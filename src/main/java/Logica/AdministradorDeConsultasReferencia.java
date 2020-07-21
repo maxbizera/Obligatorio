@@ -38,7 +38,7 @@ public class AdministradorDeConsultasReferencia implements IAdministradorDeConsu
     private ArrayList<Consulta> buscarConsultasEnRepositorio(ArrayList<Niño> niños) {
         ArrayList<Consulta> respuesta = new ArrayList();
         niños.forEach(niño -> {
-            niño.consultas.forEach(consulta -> respuesta.add(consulta));
+            niño.getConsultas().forEach(consulta -> respuesta.add(consulta));
         });
         return respuesta;
     }

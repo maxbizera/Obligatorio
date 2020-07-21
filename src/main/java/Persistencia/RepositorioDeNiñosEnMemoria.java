@@ -19,4 +19,15 @@ public class RepositorioDeNiñosEnMemoria implements IRepositorioDeNiños {
         return this.data;
     }
 
+    @Override
+    public Niño obtener(String id) {
+        Niño respuesta = null;
+        for (Niño niño : this.data) {
+            if (niño.getId().equals(id)) {
+                respuesta = niño;
+            }
+        }
+        return respuesta;
+    }
+
 }

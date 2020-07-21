@@ -23,7 +23,28 @@ public class AdministradorDeConsultasReferenciaTests {
         int respuestaEsperada = 1;
         Persistencia.Consulta consulta = new Persistencia.Consulta(new Date());
         ArrayList< Persistencia.Consulta> consultas
-                = new ArrayList< Persistencia.Consulta>();
+                = new ArrayList< >();
+        consultas.add(consulta);
+        Niño niño1 = new Niño(consultas);
+        ArrayList<Niño> lista = new ArrayList<>();
+        lista.add((niño1));
+        IRepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(lista);
+        Date fecha = new Date();
+        IAdministradorDeConsultas administrador = new AdministradorDeConsultasReferencia(repositorio);
+        //Act
+        int respuestaActual = administrador.contarHastaFecha(fecha);
+        //Assert
+        assertEquals(respuestaEsperada, respuestaActual);
+    }
+
+    @Test
+    public void deberiaRetornarCeroConsultasAlBuscarDespuesDeUnaDeterminadaFecha() {
+        //Arrange
+        int respuestaEsperada = 0;
+        Date fechaFutura = new Date(System.currentTimeMillis() + 600000l);
+        Persistencia.Consulta consulta = new Persistencia.Consulta(fechaFutura);
+        ArrayList< Persistencia.Consulta> consultas
+                = new ArrayList<>();
         consultas.add(consulta);
         Niño niño1 = new Niño(consultas);
         ArrayList<Niño> lista = new ArrayList<>();
