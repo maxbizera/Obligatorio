@@ -2,7 +2,7 @@ package Logica;
 
 import Dominio.RepositorioDeNiñosEnMemoria;
 import Dominio.Niño;
-import Dominio.IRepositorioDeNiños;
+import Dominio.RepositorioDeNiños;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,9 +21,9 @@ public class AdministradorDeConsultasReferenciaTests {
         Niño niño1 = new Niño(consultas);
         ArrayList<Niño> lista = new ArrayList<>();
         lista.add((niño1));
-        IRepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(lista);
+        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(lista);
         Date fecha = new Date();
-        IAdministradorDeConsultas administrador = new AdministradorDeConsultasReferencia(repositorio);
+        AdministradorDeConsultas administrador = new AdministradorDeConsultasReferencia(repositorio);
         //Act
         int respuestaActual = administrador.contarHastaFecha(fecha);
         //Assert
@@ -42,9 +42,9 @@ public class AdministradorDeConsultasReferenciaTests {
         Niño niño1 = new Niño(consultas);
         ArrayList<Niño> lista = new ArrayList<>();
         lista.add((niño1));
-        IRepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(lista);
+        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(lista);
         Date fecha = new Date();
-        IAdministradorDeConsultas administrador = new AdministradorDeConsultasReferencia(repositorio);
+        AdministradorDeConsultas administrador = new AdministradorDeConsultasReferencia(repositorio);
         //Act
         int respuestaActual = administrador.contarHastaFecha(fecha);
         //Assert

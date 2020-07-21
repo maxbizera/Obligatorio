@@ -2,7 +2,7 @@ package Dominio;
 
 import java.util.ArrayList;
 
-public class RepositorioDeNiñosEnMemoria implements IRepositorioDeNiños {
+public class RepositorioDeNiñosEnMemoria extends RepositorioDeNiños {
 
     private final ArrayList<Niño> data;
 

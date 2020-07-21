@@ -1,16 +1,16 @@
 package Logica;
 
-import Dominio.IRepositorioDeNiños;
+import Dominio.RepositorioDeNiños;
 import Dominio.Niño;
 import Dominio.Consulta;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class AdministradorDeConsultasReferencia implements IAdministradorDeConsultas {
+public class AdministradorDeConsultasReferencia extends AdministradorDeConsultas {
 
-    private final IRepositorioDeNiños repositorio;
+    private final RepositorioDeNiños repositorio;
 
-    public AdministradorDeConsultasReferencia(IRepositorioDeNiños repositorio) {
+    public AdministradorDeConsultasReferencia(RepositorioDeNiños repositorio) {
         this.repositorio = repositorio;
     }
 

@@ -10,7 +10,7 @@ public class RepositorioDeNiñosEnMemoriaTest {
     @Test
     public void deberiaListarVacioSiNoPasoData() {
         //Arrange
-        IRepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria();
+        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria();
         //Act
         ArrayList<Niño> resultadoActual = repositorio.listar();
         //Assert
@@ -21,7 +21,7 @@ public class RepositorioDeNiñosEnMemoriaTest {
     public void deberiaPoderListarSiPasoData() {
         //Arrange
         ArrayList<Niño> resultadoEsperado = new ArrayList<>();
-        IRepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(resultadoEsperado);
+        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(resultadoEsperado);
         //Act
         ArrayList<Niño> resultadoActual = repositorio.listar();
         //Assert
@@ -34,7 +34,7 @@ public class RepositorioDeNiñosEnMemoriaTest {
         Niño resultadoEsperado = new Niño();
         ArrayList<Niño> data = new ArrayList<>();
         data.add(resultadoEsperado);
-        IRepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(data);
+        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(data);
         //Act
         Niño resultadoActual = repositorio.obtener(resultadoEsperado.getId());
         //Assert
@@ -46,7 +46,7 @@ public class RepositorioDeNiñosEnMemoriaTest {
         //Arrange
         Niño resultadoEsperado = null;
 
-        IRepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria();
+        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria();
         //Act
         Niño resultadoActual = repositorio.obtener(UUID.randomUUID().toString());
         //Assert
