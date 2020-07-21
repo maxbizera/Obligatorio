@@ -1,29 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
+import Dominio.RepositorioDeNiñosEnMemoria;
+import Dominio.Niño;
+import Dominio.IRepositorioDeNiños;
 import org.junit.jupiter.api.Test;
-import Persistencia.*;
 import java.util.ArrayList;
 import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author gcarrillo
- */
 public class AdministradorDeConsultasReferenciaTests {
 
     @Test
     public void deberiaRetornarElNumeroDeConsultasAntesDeUnaDeterminadaFecha() {
         //Arrange
         int respuestaEsperada = 1;
-        Persistencia.Consulta consulta = new Persistencia.Consulta(new Date());
-        ArrayList< Persistencia.Consulta> consultas
-                = new ArrayList< >();
+        Dominio.Consulta consulta = new Dominio.Consulta(new Date());
+        ArrayList< Dominio.Consulta> consultas
+                = new ArrayList<>();
         consultas.add(consulta);
         Niño niño1 = new Niño(consultas);
         ArrayList<Niño> lista = new ArrayList<>();
@@ -42,8 +35,8 @@ public class AdministradorDeConsultasReferenciaTests {
         //Arrange
         int respuestaEsperada = 0;
         Date fechaFutura = new Date(System.currentTimeMillis() + 600000l);
-        Persistencia.Consulta consulta = new Persistencia.Consulta(fechaFutura);
-        ArrayList< Persistencia.Consulta> consultas
+        Dominio.Consulta consulta = new Dominio.Consulta(fechaFutura);
+        ArrayList< Dominio.Consulta> consultas
                 = new ArrayList<>();
         consultas.add(consulta);
         Niño niño1 = new Niño(consultas);

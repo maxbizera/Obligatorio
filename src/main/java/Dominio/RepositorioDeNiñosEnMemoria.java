@@ -1,4 +1,4 @@
-package Persistencia;
+package Dominio;
 
 import java.util.ArrayList;
 

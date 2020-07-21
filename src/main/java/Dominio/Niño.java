@@ -1,12 +1,8 @@
-package Persistencia;
+package Dominio;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-/**
- *
- * @author gcarrillo
- */
 public class Niño {
 
     private final UUID id;
