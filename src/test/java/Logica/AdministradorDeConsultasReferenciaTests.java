@@ -14,7 +14,7 @@ public class AdministradorDeConsultasReferenciaTests {
     public void deberiaRetornarElNumeroDeConsultasAntesDeUnaDeterminadaFecha() {
         //Arrange
         int respuestaEsperada = 1;
-        Dominio.Consulta consulta = new Dominio.Consulta(new Date());
+        Dominio.Consulta consulta = new Dominio.Consulta(new Date(System.currentTimeMillis() - 600000l));
         ArrayList< Dominio.Consulta> consultas
                 = new ArrayList<>();
         consultas.add(consulta);

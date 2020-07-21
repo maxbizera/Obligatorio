@@ -11,7 +11,7 @@ public class RepositorioDeNiñosEnMemoria implements IRepositorioDeNiños {
     }
 
     public RepositorioDeNiñosEnMemoria() {
-        this.data = new ArrayList<Niño>();
+        this.data = new ArrayList<>();
     }
 
     @Override

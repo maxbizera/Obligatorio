@@ -37,7 +37,7 @@ public class AdministradorDeConsultasReferencia implements IAdministradorDeConsu
     private ArrayList<Consulta> filtrarConsultasPorFecha(ArrayList<Consulta> consultas, Date fecha) {
         ArrayList<Consulta> respuesta = new ArrayList();
         consultas.forEach(consulta -> {
-            if (consulta.fecha.compareTo(fecha) <= 0) {
+            if (consulta.getFecha().compareTo(fecha) <= 0) {
                 respuesta.add(consulta);
             }
         });
