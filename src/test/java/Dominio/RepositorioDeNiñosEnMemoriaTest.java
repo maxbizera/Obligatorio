@@ -29,7 +29,7 @@ public class RepositorioDeNiñosEnMemoriaTest {
     }
 
     @Test
-    public void deberiaPoderObtenerUnNiñoEspecificoSiSeEncuentraEnElRepositorio() {
+    public void deberiaPoderObtenerUnNiñoEspecificoSiSeEncuentraEnElRepositorio() throws NiñoNoEncontradoException {
         //Arrange
         Niño resultadoEsperado = new Niño();
         ArrayList<Niño> data = new ArrayList<>();
@@ -42,15 +42,13 @@ public class RepositorioDeNiñosEnMemoriaTest {
     }
 
     @Test
-    public void deberiaRetornarNuloAlObtenerUnNiñoEspecificoSiNoSeEncuentraEnElRepositorio() {
+    public void deberiaRetornarUnaExcepcionAlObtenerUnNiñoEspecificoSiNoSeEncuentraEnElRepositorio() throws NiñoNoEncontradoException {
         //Arrange
-        Niño resultadoEsperado = null;
-
         RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria();
         //Act
-        Niño resultadoActual = repositorio.obtener(UUID.randomUUID().toString());
-        //Assert
-        assertEquals(resultadoEsperado, resultadoActual);
+        //Asserts
+        assertThrows(NiñoNoEncontradoException.class, () -> {
+            repositorio.obtener(UUID.randomUUID().toString());
+        });
     }
-
 }

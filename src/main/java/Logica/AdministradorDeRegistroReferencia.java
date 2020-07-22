@@ -45,11 +45,12 @@ public class AdministradorDeRegistroReferencia extends AdministradorDeRegistro {
     }
 
     @Override
-    public void agregarConsulta(Consulta consulta) {
-        Niño niño = this.repositorio.obtener(consulta.getIdNiño());
-        if (niño != null) {
+    public void agregarConsulta(Consulta consulta) throws ConsultaNoAgregadaException {
+        try {
+            Niño niño = this.repositorio.obtener(consulta.getIdNiño());
             niño.agregarRegistro(new Registro("consulta", consulta.getFecha()));
+        } catch (Dominio.NiñoNoEncontradoException e) {
+            throw new ConsultaNoAgregadaException();
         }
     }
-
 }

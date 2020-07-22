@@ -6,6 +6,6 @@ public abstract class RepositorioDeNiños {
 
     public abstract ArrayList<Niño> listar();
 
-    public abstract Niño obtener(String id);
+    public abstract Niño obtener(String id) throws NiñoNoEncontradoException;
 
 }

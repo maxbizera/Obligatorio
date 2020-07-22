@@ -20,14 +20,18 @@ public class RepositorioDeNiñosEnMemoria extends RepositorioDeNiños {
     }
 
     @Override
-    public Niño obtener(String id) {
+    public Niño obtener(String id) throws NiñoNoEncontradoException {
         Niño respuesta = null;
         for (Niño niño : this.data) {
             if (niño.getId().equals(id)) {
                 respuesta = niño;
             }
         }
-        return respuesta;
+        if (respuesta != null) {
+            return respuesta;
+        } else {
+            throw new NiñoNoEncontradoException();
+        }
     }
 
 }

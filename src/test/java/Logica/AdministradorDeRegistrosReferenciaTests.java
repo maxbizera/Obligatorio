@@ -52,7 +52,7 @@ public class AdministradorDeRegistrosReferenciaTests {
     }
 
     @Test
-    public void deberiaPoderAgregarUnaConsultaAUnNiñoExistente() {
+    public void deberiaPoderAgregarUnaConsultaAUnNiñoExistente() throws ConsultaNoAgregadaException {
         //Arrange
         int respuestaEsperada = 1;
         Date fechaDeRegistro = new Date();
@@ -72,18 +72,13 @@ public class AdministradorDeRegistrosReferenciaTests {
     @Test
     public void deberiaLanzarUnaExcepcionAlAgregarUnaConsultaAUnNiñoNoExistente() {
         //Arrange
-        int respuestaEsperada = 1;
-        Date fechaDeRegistro = new Date();
-        Niño niño1 = new Niño();
-        ArrayList<Niño> data = new ArrayList<>();
-        data.add(niño1);
-        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(data);
+        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria();
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
-        Logica.Consulta consulta = new Consulta(niño1.getId(), fechaDeRegistro);
+        Logica.Consulta consulta = new Consulta("", new Date());
         //Act
-        administrador.agregarConsulta(consulta);
         //Assert
-        int respuestaActual = niño1.getRegistros().size();
-        assertEquals(respuestaEsperada, respuestaActual);
+        assertThrows(ConsultaNoAgregadaException.class, () -> {
+            administrador.agregarConsulta(consulta);
+        });
     }
 }

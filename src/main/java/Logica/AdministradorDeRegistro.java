@@ -6,6 +6,6 @@ public abstract class AdministradorDeRegistro {
 
     public abstract int contarConsultasHastaFecha(Date fecha);
 
-    public abstract void agregarConsulta(Consulta consulta);
+    public abstract void agregarConsulta(Consulta consulta) throws ConsultaNoAgregadaException;
 
 }
