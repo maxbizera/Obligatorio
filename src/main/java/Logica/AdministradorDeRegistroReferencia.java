@@ -53,4 +53,14 @@ public class AdministradorDeRegistroReferencia extends AdministradorDeRegistro {
             throw new ConsultaNoAgregadaException();
         }
     }
+
+    @Override
+    public void agregarVacuna(Vacuna vacuna) throws VacunaNoAgregadaException {
+        try {
+            Niño niño = this.repositorio.obtener(vacuna.getIdNiño());
+            niño.agregarRegistro(new Registro("vacuna", vacuna.getFecha()));
+        } catch (Dominio.NiñoNoEncontradoException e) {
+            throw new VacunaNoAgregadaException();
+        }
+    }
 }

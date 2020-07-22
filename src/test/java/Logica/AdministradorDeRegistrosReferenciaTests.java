@@ -81,4 +81,35 @@ public class AdministradorDeRegistrosReferenciaTests {
             administrador.agregarConsulta(consulta);
         });
     }
+
+    @Test
+    public void deberiaPoderAgregarUnaVacunaAUnNiñoExistente() throws VacunaNoAgregadaException {
+        //Arrange
+        int respuestaEsperada = 1;
+        Date fechaDeRegistro = new Date();
+        Niño niño1 = new Niño();
+        ArrayList<Niño> data = new ArrayList<>();
+        data.add(niño1);
+        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(data);
+        AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
+        Logica.Vacuna vacuna = new Vacuna(niño1.getId(), fechaDeRegistro);
+        //Act
+        administrador.agregarVacuna(vacuna);
+        //Assert
+        int respuestaActual = niño1.getRegistros().size();
+        assertEquals(respuestaEsperada, respuestaActual);
+    }
+
+    @Test
+    public void deberiaLanzarUnaExcepcionAlAgregarUnaVacunaAUnNiñoNoExistente() {
+        //Arrange
+        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria();
+        AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
+        Logica.Vacuna vacuna = new Vacuna("", new Date());
+        //Act
+        //Assert
+        assertThrows(VacunaNoAgregadaException.class, () -> {
+            administrador.agregarVacuna(vacuna);
+        });
+    }
 }

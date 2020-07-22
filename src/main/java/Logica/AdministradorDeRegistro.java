@@ -8,4 +8,6 @@ public abstract class AdministradorDeRegistro {
 
     public abstract void agregarConsulta(Consulta consulta) throws ConsultaNoAgregadaException;
 
+    public abstract void agregarVacuna(Vacuna vacuna) throws VacunaNoAgregadaException;
+
 }
