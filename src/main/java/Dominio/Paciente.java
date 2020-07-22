@@ -3,17 +3,17 @@ package Dominio;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Niño {
+public class Paciente {
 
     private final UUID id;
     private final ArrayList<Registro> registros;
 
-    public Niño() {
+    public Paciente() {
         this.id = UUID.randomUUID();
         this.registros = new ArrayList<>();
     }
 
-    public Niño(ArrayList<Registro> consultas) {
+    public Paciente(ArrayList<Registro> consultas) {
         this.id = UUID.randomUUID();
         this.registros = consultas;
     }

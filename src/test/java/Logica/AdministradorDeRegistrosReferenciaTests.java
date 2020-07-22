@@ -1,8 +1,8 @@
 package Logica;
 
-import Dominio.RepositorioDeNiñosEnMemoria;
-import Dominio.Niño;
-import Dominio.RepositorioDeNiños;
+import Dominio.RepositorioDePacientesEnMemoria;
+import Dominio.Paciente;
+import Dominio.RepositorioDePacientes;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,10 +18,10 @@ public class AdministradorDeRegistrosReferenciaTests {
         ArrayList< Dominio.Registro> consultas
                 = new ArrayList<>();
         consultas.add(consulta);
-        Niño niño1 = new Niño(consultas);
-        ArrayList<Niño> lista = new ArrayList<>();
+        Paciente niño1 = new Paciente(consultas);
+        ArrayList<Paciente> lista = new ArrayList<>();
         lista.add((niño1));
-        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(lista);
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(lista);
         Date fecha = new Date();
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
         //Act
@@ -39,10 +39,10 @@ public class AdministradorDeRegistrosReferenciaTests {
         ArrayList< Dominio.Registro> consultas
                 = new ArrayList<>();
         consultas.add(consulta);
-        Niño niño1 = new Niño(consultas);
-        ArrayList<Niño> lista = new ArrayList<>();
+        Paciente niño1 = new Paciente(consultas);
+        ArrayList<Paciente> lista = new ArrayList<>();
         lista.add((niño1));
-        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(lista);
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(lista);
         Date fecha = new Date();
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
         //Act
@@ -56,10 +56,10 @@ public class AdministradorDeRegistrosReferenciaTests {
         //Arrange
         int respuestaEsperada = 1;
         Date fechaDeRegistro = new Date();
-        Niño niño1 = new Niño();
-        ArrayList<Niño> data = new ArrayList<>();
+        Paciente niño1 = new Paciente();
+        ArrayList<Paciente> data = new ArrayList<>();
         data.add(niño1);
-        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(data);
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
         Logica.Consulta consulta = new Consulta(niño1.getId(), fechaDeRegistro);
         //Act
@@ -72,7 +72,7 @@ public class AdministradorDeRegistrosReferenciaTests {
     @Test
     public void deberiaLanzarUnaExcepcionAlAgregarUnaConsultaAUnNiñoNoExistente() {
         //Arrange
-        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria();
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria();
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
         Logica.Consulta consulta = new Consulta("", new Date());
         //Act
@@ -87,10 +87,10 @@ public class AdministradorDeRegistrosReferenciaTests {
         //Arrange
         int respuestaEsperada = 1;
         Date fechaDeRegistro = new Date();
-        Niño niño1 = new Niño();
-        ArrayList<Niño> data = new ArrayList<>();
+        Paciente niño1 = new Paciente();
+        ArrayList<Paciente> data = new ArrayList<>();
         data.add(niño1);
-        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(data);
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
         Logica.Vacuna vacuna = new Vacuna(niño1.getId(), fechaDeRegistro);
         //Act
@@ -103,7 +103,7 @@ public class AdministradorDeRegistrosReferenciaTests {
     @Test
     public void deberiaLanzarUnaExcepcionAlAgregarUnaVacunaAUnNiñoNoExistente() {
         //Arrange
-        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria();
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria();
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
         Logica.Vacuna vacuna = new Vacuna("", new Date());
         //Act
@@ -111,5 +111,23 @@ public class AdministradorDeRegistrosReferenciaTests {
         assertThrows(VacunaNoAgregadaException.class, () -> {
             administrador.agregarVacuna(vacuna);
         });
+    }
+
+    @Test
+    public void deberiaPoderAgregarUnControlAUnNiñoExistente() throws ControlNoAgregadoException {
+        //Arrange
+        int respuestaEsperada = 1;
+        Date fechaDeRegistro = new Date();
+        Paciente niño1 = new Paciente();
+        ArrayList<Paciente> data = new ArrayList<>();
+        data.add(niño1);
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
+        AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
+        Logica.Control control = new Control(niño1.getId(), fechaDeRegistro);
+        //Act
+        administrador.agregarControl(control);
+        //Assert
+        int respuestaActual = niño1.getRegistros().size();
+        assertEquals(respuestaEsperada, respuestaActual);
     }
 }

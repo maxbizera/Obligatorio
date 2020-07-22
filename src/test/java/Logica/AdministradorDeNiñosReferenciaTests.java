@@ -1,8 +1,8 @@
 package Logica;
 
-import Dominio.RepositorioDeNiñosEnMemoria;
-import Dominio.Niño;
-import Dominio.RepositorioDeNiños;
+import Dominio.RepositorioDePacientesEnMemoria;
+import Dominio.Paciente;
+import Dominio.RepositorioDePacientes;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +12,7 @@ public class AdministradorDeNiñosReferenciaTests {
     @Test
     public void deberiaTraerUnListadoVacioSiNoHayNiñosEnElSistema() {
         //Arrange
-        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria();
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria();
         AdministradorDeNiños administrador = new AdministradorDeNiñosReferencia(repositorio);
         ArrayList<ResumenNiño> respuestaEsperada = new ArrayList<>();
         //Act
@@ -24,10 +24,10 @@ public class AdministradorDeNiñosReferenciaTests {
     @Test
     public void deberiaPoderListarTodosLosNiñosExistentesEnElSistema() {
         //Arrange
-        Niño niño1 = new Niño();
-        ArrayList<Niño> lista = new ArrayList<>();
+        Paciente niño1 = new Paciente();
+        ArrayList<Paciente> lista = new ArrayList<>();
         lista.add((niño1));
-        RepositorioDeNiños repositorio = new RepositorioDeNiñosEnMemoria(lista);
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(lista);
         AdministradorDeNiños administrador = new AdministradorDeNiñosReferencia(repositorio);
         ArrayList<ResumenNiño> respuestaEsperada = new ArrayList<>();
         ResumenNiño niñoEsperado = new ResumenNiño();

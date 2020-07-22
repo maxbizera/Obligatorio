@@ -5,8 +5,8 @@
  */
 package Logica;
 
-import Dominio.Niño;
-import Dominio.RepositorioDeNiños;
+import Dominio.Paciente;
+import Dominio.RepositorioDePacientes;
 import java.util.ArrayList;
 
 /**
@@ -15,9 +15,9 @@ import java.util.ArrayList;
  */
 public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
 
-    private final RepositorioDeNiños repositorio;
+    private final RepositorioDePacientes repositorio;
 
-    public AdministradorDeNiñosReferencia(RepositorioDeNiños repositorio) {
+    public AdministradorDeNiñosReferencia(RepositorioDePacientes repositorio) {
         this.repositorio = repositorio;
     }
 

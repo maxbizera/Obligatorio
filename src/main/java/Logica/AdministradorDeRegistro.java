@@ -10,4 +10,6 @@ public abstract class AdministradorDeRegistro {
 
     public abstract void agregarVacuna(Vacuna vacuna) throws VacunaNoAgregadaException;
 
+    public abstract void agregarControl(Control control) throws ControlNoAgregadoException;
+
 }
