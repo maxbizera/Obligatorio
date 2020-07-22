@@ -8,4 +8,6 @@ public abstract class RepositorioDePacientes {
 
     public abstract Paciente obtener(String id) throws PacienteNoEncontradoException;
 
+    public abstract void agregar(Paciente paciente);
+
 }

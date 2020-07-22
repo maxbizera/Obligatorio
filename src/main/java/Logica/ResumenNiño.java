@@ -9,6 +9,6 @@ package Logica;
  *
  * @author gcarrillo
  */
-class ResumenNiño {
+public class ResumenNiño {
     
 }

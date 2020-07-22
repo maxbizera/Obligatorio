@@ -34,4 +34,9 @@ public class RepositorioDePacientesEnMemoria extends RepositorioDePacientes {
         }
     }
 
+    @Override
+    public void agregar(Paciente paciente) {
+        this.data.add(paciente);
+    }
+
 }

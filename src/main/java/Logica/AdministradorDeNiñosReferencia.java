@@ -6,6 +6,7 @@
 package Logica;
 
 import Dominio.Paciente;
+import Dominio.Registro;
 import Dominio.RepositorioDePacientes;
 import java.util.ArrayList;
 
@@ -29,6 +30,23 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
         });
 
         return respuesta;
+    }
+
+    @Override
+    public Niño obtener(String id) throws NiñoNoExistenteException {
+        try {
+            Paciente paciente = this.repositorio.obtener(id);
+            Niño niño = new Niño(paciente.getId());
+            return niño;
+        } catch (Dominio.PacienteNoEncontradoException e) {
+            throw new NiñoNoExistenteException();
+        }
+
+    }
+
+    @Override
+    public void registrar(Niño niño) {
+        this.repositorio.agregar(new Paciente());
     }
 
 }

@@ -7,8 +7,11 @@ package Logica;
 
 /**
  *
- * @author gcarrillo
+ * @author maxbi
  */
-public class ControlNoAgregadoException extends Exception {
+public class NiñoNoExistenteException extends Exception {
+
+    public NiñoNoExistenteException() {
+    }
     
 }

@@ -5,6 +5,7 @@ import Dominio.Paciente;
 import Dominio.RepositorioDePacientes;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AdministradorDeNiñosReferenciaTests {
@@ -37,5 +38,43 @@ public class AdministradorDeNiñosReferenciaTests {
         //Assert
         assertEquals(respuestaEsperada.size(), respuestaActual.size());
     }
+    
+    @Test
+    public void deberiaPoderObtenerUnNiñoExistentePorId() throws NiñoNoExistenteException {
+         //Arrange
+         Paciente niño = new Paciente();
+         ArrayList<Paciente> pacientes = new ArrayList<>();
+         pacientes.add(niño);
+         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(pacientes);
+        AdministradorDeNiños administrador = new AdministradorDeNiñosReferencia(repositorio);
+        Niño respuestaEsperada = new Niño(niño.getId());
+        //Act
+         Niño respuestaActual = administrador.obtener(niño.getId());
+         //Assert
+         assertEquals(respuestaEsperada.getId(), respuestaActual.getId());
+    }
 
+    @Test
+    public void deberiaLanzarUnaExcepcionAlObtenerUnNiñoNoExistente() {
+        //Arrange
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria();
+        AdministradorDeNiños administrador = new AdministradorDeNiñosReferencia(repositorio);
+        //Act
+        //Assert
+        assertThrows(NiñoNoExistenteException.class, () -> {
+            administrador.obtener("");
+        });
+    }
+    
+     @Test
+    public void deberiaPoderRegistrarUnNiño() {
+        int respuestaEsperada = 1;
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria();
+        Niño niño = new Niño("");
+        AdministradorDeNiños administrador = new AdministradorDeNiñosReferencia(repositorio);
+        //Act
+        administrador.registrar(niño);
+         //Assert
+         assertEquals(respuestaEsperada, repositorio.listar().size());
+    }
 }
