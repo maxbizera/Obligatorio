@@ -20,7 +20,7 @@ public class ListaNiños extends javax.swing.JFrame {
 
         this.administradorDeNiños = administradorDeNiño;
 
-        this.niños = new Object[2][5];
+        this.niños = new Object[this.administradorDeNiños.listar().size()][5];
 
         int index = 0;
         for (ResumenNiño niño : this.administradorDeNiños.listar()) {

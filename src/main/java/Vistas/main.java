@@ -26,11 +26,11 @@ public class main {
     public static void main(String[] args) throws FileNotFoundException {
 
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(new ArrayList<Paciente>() {
-                {
-                    add(new Paciente("Guillermo Carrillo", "V18942891", new Date(), "HCC", "Krivoy", false));
-                    add(new Paciente("Maximiliano Bizera", "V1231231", new Date(), "HCC", "Krivoy", false));
-                }
-            });
+            {
+                add(new Paciente("Guillermo Carrillo", "V18942891", Instant.now(), "HCC", "Krivoy", false));
+                add(new Paciente("Maximiliano Bizera", "V1231231", Instant.now(), "HCC", "Krivoy", false));
+            }
+        });
         AdministradorDeNiños administradorDeNiño = new AdministradorDeNiñosReferencia(repositorio);
         new ListaNiños(administradorDeNiño).setVisible(true);
         /*try {
