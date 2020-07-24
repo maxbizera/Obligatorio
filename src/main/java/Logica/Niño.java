@@ -13,7 +13,7 @@ public class Niño {
     private final String medicoCabezera;
     private final boolean fonasa;
 
-    public Niño(String document, String nombre, String fechaDeNacimiento, String servicioMedico, String medicoCabezera, boolean fonasa, String sexo) {
+    public Niño(String document, String nombre, String fechaDeNacimiento, String servicioMedico, String medicoCabezera, boolean fonasa) {
         this.id = UUID.randomUUID().toString();
         this.document = document;
         this.nombre = nombre;
@@ -27,14 +27,13 @@ public class Niño {
         return this.id;
     }
 
-    public Niño(String id, String document, String nombre, String fechaDeNacimiento, String servicioMedico, String medicoCabezera, boolean fonasa, String sexo) {
+    public Niño(String id, String document, String nombre, String fechaDeNacimiento, String servicioMedico, String medicoCabezera, boolean fonasa) {
         this.document = document;
         this.nombre = nombre;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.servicioMedico = servicioMedico;
         this.medicoCabezera = medicoCabezera;
         this.fonasa = fonasa;
-        this.sexo = sexo;
         this.id = id;
     }
 
@@ -60,10 +59,6 @@ public class Niño {
 
     public boolean getFonasa() {
         return this.fonasa;
-    }
-
-    public String getSexo() {
-        return this.sexo;
     }
 
     public String getId() {
