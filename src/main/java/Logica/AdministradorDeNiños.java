@@ -10,4 +10,8 @@ public abstract class AdministradorDeNiños {
 
     public abstract void registrar(Niño niño);
 
+    public void eliminar(String document) {
+        System.out.println("El niño " + document + " ha sido eliminado.");
+    }
+
 }

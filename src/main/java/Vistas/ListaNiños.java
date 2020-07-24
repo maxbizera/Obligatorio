@@ -8,10 +8,15 @@ import java.awt.Toolkit;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
 import java.beans.VetoableChangeListener;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 public class ListaNiños extends javax.swing.JFrame {
+    
+    private String documentSelected;
 
     private final AdministradorDeNiños administradorDeNiños;
     private final Object[][] niños;
@@ -35,6 +40,15 @@ public class ListaNiños extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
 
+        jTableListaNiños.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                documentSelected = jTableListaNiños.getValueAt(jTableListaNiños.getSelectedRow(), 1).toString();
+                System.out.println(documentSelected);
+                jMenuItemEliminarNiño.setEnabled(true);
+                jMenuItemModificarNiño.setEnabled(true);
+            }
+        });
     }
 
     /**
@@ -58,7 +72,6 @@ public class ListaNiños extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de niños");
-        setAlwaysOnTop(true);
         setName("listaNiñosFrame"); // NOI18N
 
         jTableListaNiños.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,6 +123,11 @@ public class ListaNiños extends javax.swing.JFrame {
 
         jMenuItemEliminarNiño.setText("Eliminar niño");
         jMenuItemEliminarNiño.setEnabled(false);
+        jMenuItemEliminarNiño.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEliminarNiñoActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItemEliminarNiño);
 
         jMenuBar.add(jMenu2);
@@ -120,7 +138,9 @@ public class ListaNiños extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,13 +157,21 @@ public class ListaNiños extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        new AgregarNiño().setVisible(true);
+        new AgregarNiño(administradorDeNiños).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItemModificarNiñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModificarNiñoActionPerformed
-        // TODO add your handling code here:
+        new ModificarNiño(administradorDeNiños, this.documentSelected).setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jMenuItemModificarNiñoActionPerformed
+
+    private void jMenuItemEliminarNiñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEliminarNiñoActionPerformed
+        int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este niño?");
+        if ( input == 0 ) {
+            administradorDeNiños.eliminar(this.documentSelected);
+        }
+    }//GEN-LAST:event_jMenuItemEliminarNiñoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

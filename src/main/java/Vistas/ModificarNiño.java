@@ -14,17 +14,16 @@ import javax.swing.JOptionPane;
  *
  * @author maxbi
  */
-public class AgregarNiño extends javax.swing.JFrame {
+public class ModificarNiño extends javax.swing.JFrame {
 
-    private AdministradorDeNiños administradorDeNiños;
-    
+    private final AdministradorDeNiños administradorDeNiños;
+
     /**
      * Creates new form AgregarNiño
      */
-
-    AgregarNiño(AdministradorDeNiños administradorDeNiños) {
+    ModificarNiño(AdministradorDeNiños administradorDeNiños, String document) {
         this.administradorDeNiños = administradorDeNiños;
-        
+
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
@@ -57,13 +56,13 @@ public class AgregarNiño extends javax.swing.JFrame {
         txtSexo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Agregar nuevo niño");
+        setTitle("Modificar nuevo niño");
 
         jLabel1.setText("Nombre del niño");
 
         jLabel2.setText("Documento del niño");
 
-        jButton1.setText("Agregar");
+        jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -182,7 +181,7 @@ public class AgregarNiño extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, "El niño " + this.txtNombreNiño.getText() + " ha sido agregado correctamente.");
+        JOptionPane.showMessageDialog(null, "El niño " + this.txtNombreNiño.getText() + " ha sido modificado correctamente.");
         new ListaNiños(administradorDeNiños).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
