@@ -47,7 +47,7 @@ public class AdministradorDeNiñosReferenciaTests {
         pacientes.add(niño);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(pacientes);
         AdministradorDeNiños administrador = new AdministradorDeNiñosReferencia(repositorio);
-        Niño respuestaEsperada = new Niño(niño.getId(), "", "");
+        Niño respuestaEsperada = new Niño(niño.getId(), "", "", "", "", "", false, "");
         //Act
         Niño respuestaActual = administrador.obtener(niño.getId());
         //Assert
@@ -70,7 +70,7 @@ public class AdministradorDeNiñosReferenciaTests {
     public void deberiaPoderRegistrarUnNiño() {
         int respuestaEsperada = 1;
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria();
-        Niño niño = new Niño("", "", "");
+        Niño niño = new Niño("", "", "", "", "", false, "");
         AdministradorDeNiños administrador = new AdministradorDeNiñosReferencia(repositorio);
         //Act
         administrador.registrar(niño);
