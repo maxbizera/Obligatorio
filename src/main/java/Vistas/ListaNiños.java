@@ -218,7 +218,6 @@ public class ListaNiños extends javax.swing.JFrame {
         if (input == 0) {
             administradorDeNiños.eliminar(this.documentSelected);
             this.recargarLista();
-
         }
     }//GEN-LAST:event_jMenuItemEliminarNiñoActionPerformed
 
