@@ -1,6 +1,7 @@
 package Dominio;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,7 +32,7 @@ public class RepositorioDePacientesEnMemoriaTest {
     @Test
     public void deberiaPoderObtenerUnPacienteEspecificoSiSeEncuentraEnElRepositorio() throws PacienteNoEncontradoException {
         //Arrange
-        Paciente resultadoEsperado = new Paciente();
+        Paciente resultadoEsperado = new Paciente("", "", new Date(), "", "", false);
         ArrayList<Paciente> data = new ArrayList<>();
         data.add(resultadoEsperado);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
@@ -50,5 +51,18 @@ public class RepositorioDePacientesEnMemoriaTest {
         assertThrows(PacienteNoEncontradoException.class, () -> {
             repositorio.obtener(UUID.randomUUID().toString());
         });
+    }
+
+    @Test
+    public void deberiaPoderAgregarUnPacienteAlRepositorio() {
+        //Arrange
+        int resultadoEsperado = 1;
+        Paciente paciente = new Paciente("", "", new Date(), "", "", false);
+        ArrayList<Paciente> pacientes = new ArrayList<>();
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(pacientes);
+        //Act
+        repositorio.agregar(paciente);
+        //Assert
+        assertEquals(resultadoEsperado, repositorio.listar().size());
     }
 }

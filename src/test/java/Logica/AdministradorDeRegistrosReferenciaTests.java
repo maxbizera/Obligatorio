@@ -18,7 +18,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         ArrayList< Dominio.Registro> consultas
                 = new ArrayList<>();
         consultas.add(consulta);
-        Paciente niño1 = new Paciente(consultas);
+        Paciente niño1 = new Paciente(consultas, "", "", new Date(), "", "", false);
         ArrayList<Paciente> lista = new ArrayList<>();
         lista.add((niño1));
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(lista);
@@ -39,7 +39,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         ArrayList< Dominio.Registro> consultas
                 = new ArrayList<>();
         consultas.add(consulta);
-        Paciente niño1 = new Paciente(consultas);
+        Paciente niño1 = new Paciente(consultas, "", "", new Date(), "", "", false);
         ArrayList<Paciente> lista = new ArrayList<>();
         lista.add((niño1));
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(lista);
@@ -56,12 +56,12 @@ public class AdministradorDeRegistrosReferenciaTests {
         //Arrange
         int respuestaEsperada = 1;
         Date fechaDeRegistro = new Date();
-        Paciente niño1 = new Paciente();
+        Paciente niño1 = new Paciente("", "", new Date(), "", "", false);
         ArrayList<Paciente> data = new ArrayList<>();
         data.add(niño1);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
-        Logica.Consulta consulta = new Consulta(niño1.getId(), fechaDeRegistro);
+        Logica.Consulta consulta = new Consulta(niño1.getId(), fechaDeRegistro, "", "", "");
         //Act
         administrador.agregarConsulta(consulta);
         //Assert
@@ -74,7 +74,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         //Arrange
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria();
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
-        Logica.Consulta consulta = new Consulta("", new Date());
+        Logica.Consulta consulta = new Consulta("", new Date(), "", "", "");
         //Act
         //Assert
         assertThrows(ConsultaNoAgregadaException.class, () -> {
@@ -87,12 +87,12 @@ public class AdministradorDeRegistrosReferenciaTests {
         //Arrange
         int respuestaEsperada = 1;
         Date fechaDeRegistro = new Date();
-        Paciente niño1 = new Paciente();
+        Paciente niño1 = new Paciente("", "", new Date(), "", "", false);
         ArrayList<Paciente> data = new ArrayList<>();
         data.add(niño1);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
-        Logica.Vacuna vacuna = new Vacuna(niño1.getId(), fechaDeRegistro);
+        Logica.Vacuna vacuna = new Vacuna(niño1.getId(), fechaDeRegistro, "Prueba", 1, false);
         //Act
         administrador.agregarVacuna(vacuna);
         //Assert
@@ -105,7 +105,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         //Arrange
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria();
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
-        Logica.Vacuna vacuna = new Vacuna("", new Date());
+        Logica.Vacuna vacuna = new Vacuna("", new Date(), "Prueba", 1, false);
         //Act
         //Assert
         assertThrows(VacunaNoAgregadaException.class, () -> {
@@ -118,12 +118,12 @@ public class AdministradorDeRegistrosReferenciaTests {
         //Arrange
         int respuestaEsperada = 1;
         Date fechaDeRegistro = new Date();
-        Paciente niño1 = new Paciente();
+        Paciente niño1 = new Paciente("", "", new Date(), "", "", false);
         ArrayList<Paciente> data = new ArrayList<>();
         data.add(niño1);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
-        Logica.Control control = new Control(niño1.getId(), fechaDeRegistro);
+        Logica.Control control = new Control(niño1.getId(), fechaDeRegistro, "", "");
         //Act
         administrador.agregarControl(control);
         //Assert

@@ -9,6 +9,7 @@ import Dominio.Paciente;
 import Dominio.Registro;
 import Dominio.RepositorioDePacientes;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -26,7 +27,7 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
     public ArrayList<ResumenNiño> listar() {
         ArrayList<ResumenNiño> respuesta = new ArrayList<ResumenNiño>();
         this.repositorio.listar().forEach(niño -> {
-            respuesta.add(new ResumenNiño());
+            respuesta.add(new ResumenNiño(niño.getId(), niño.getNombre(), niño.getDocumento(), "", niño.getServicioMedico()));
         });
 
         return respuesta;
@@ -36,7 +37,7 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
     public Niño obtener(String id) throws NiñoNoExistenteException {
         try {
             Paciente paciente = this.repositorio.obtener(id);
-            Niño niño = new Niño(paciente.getId());
+            Niño niño = new Niño(paciente.getId(), paciente.getNombre(), paciente.getDocumento());
             return niño;
         } catch (Dominio.PacienteNoEncontradoException e) {
             throw new NiñoNoExistenteException();
@@ -46,7 +47,7 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
 
     @Override
     public void registrar(Niño niño) {
-        this.repositorio.agregar(new Paciente());
+        this.repositorio.agregar(new Paciente("", "", new Date(), "", "", false));
     }
 
 }
