@@ -1,6 +1,7 @@
 package Vistas;
 
 import Logica.AdministradorDeNiños;
+import Logica.NiñoNoExistenteException;
 import Logica.ResumenNiño;
 import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.awt.Dimension;
@@ -8,6 +9,8 @@ import java.awt.Toolkit;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
 import java.beans.VetoableChangeListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -44,9 +47,10 @@ public class ListaNiños extends javax.swing.JFrame {
             @Override
             public void valueChanged(ListSelectionEvent event) {
                 documentSelected = jTableListaNiños.getValueAt(jTableListaNiños.getSelectedRow(), 1).toString();
-                System.out.println(documentSelected);
                 jMenuItemEliminarNiño.setEnabled(true);
                 jMenuItemModificarNiño.setEnabled(true);
+                btnControles.setEnabled(true);
+                btnVacunas.setEnabled(true);
             }
         });
     }
@@ -60,8 +64,11 @@ public class ListaNiños extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popupMenu1 = new java.awt.PopupMenu();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableListaNiños = new javax.swing.JTable();
+        btnVacunas = new javax.swing.JButton();
+        btnControles = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -69,6 +76,10 @@ public class ListaNiños extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItemModificarNiño = new javax.swing.JMenuItem();
         jMenuItemEliminarNiño = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+
+        popupMenu1.setLabel("popupMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de niños");
@@ -89,6 +100,22 @@ public class ListaNiños extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(jTableListaNiños);
+
+        btnVacunas.setText("Ver vacunas");
+        btnVacunas.setEnabled(false);
+        btnVacunas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVacunasActionPerformed(evt);
+            }
+        });
+
+        btnControles.setText("Ver controles");
+        btnControles.setEnabled(false);
+        btnControles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnControlesActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Archivo");
 
@@ -132,20 +159,39 @@ public class ListaNiños extends javax.swing.JFrame {
 
         jMenuBar.add(jMenu2);
 
+        jMenu4.setText("Ayuda");
+
+        jMenuItem4.setText("Mas información");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem4);
+
+        jMenuBar.add(jMenu4);
+
         setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 36, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnControles)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVacunas))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnVacunas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnControles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -162,8 +208,12 @@ public class ListaNiños extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItemModificarNiñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModificarNiñoActionPerformed
-        new ModificarNiño(administradorDeNiños, this.documentSelected).setVisible(true);
-        setVisible(false);
+        try {
+            new ModificarNiño(administradorDeNiños, this.documentSelected).setVisible(true);
+            setVisible(false);
+        } catch (NiñoNoExistenteException ex) {
+            Logger.getLogger(ListaNiños.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItemModificarNiñoActionPerformed
 
     private void jMenuItemEliminarNiñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEliminarNiñoActionPerformed
@@ -173,16 +223,35 @@ public class ListaNiños extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItemEliminarNiñoActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        new MasInformación().setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void btnControlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnControlesActionPerformed
+        new ListaControlesDeNiño(administradorDeNiños, this.documentSelected).setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnControlesActionPerformed
+
+    private void btnVacunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVacunasActionPerformed
+        new ListaVacunasDeNiño(administradorDeNiños, this.documentSelected).setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnVacunasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnControles;
+    private javax.swing.JButton btnVacunas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItemEliminarNiño;
     private javax.swing.JMenuItem jMenuItemModificarNiño;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableListaNiños;
+    private java.awt.PopupMenu popupMenu1;
     // End of variables declaration//GEN-END:variables
 }

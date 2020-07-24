@@ -6,6 +6,8 @@
 package Vistas;
 
 import Logica.AdministradorDeNiños;
+import Logica.Niño;
+import Logica.NiñoNoExistenteException;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -21,12 +23,15 @@ public class ModificarNiño extends javax.swing.JFrame {
     /**
      * Creates new form AgregarNiño
      */
-    ModificarNiño(AdministradorDeNiños administradorDeNiños, String document) {
+    ModificarNiño(AdministradorDeNiños administradorDeNiños, String document) throws NiñoNoExistenteException {
         this.administradorDeNiños = administradorDeNiños;
 
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
+        
+        Niño niño = administradorDeNiños.obtenerPorDocumento(document);
+        System.out.println("Vistas.ModificarNiño.<init>() " + niño.getDocument());
     }
 
     /**

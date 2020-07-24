@@ -47,17 +47,43 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
     public Niño obtener(String id) throws NiñoNoExistenteException {
         try {
             Paciente paciente = this.repositorio.obtener(id);
-            Niño niño = new Niño(paciente.getId(), paciente.getNombre(), paciente.getDocumento());
+            Niño niño = new Niño(
+                paciente.getDocumento(),
+                paciente.getNombre(),
+                paciente.getFechaNacimiento().toString(),
+                paciente.getServicioMedico(),
+                paciente.getMedicoCabecera(),
+                true,
+                "Niño"
+            );
             return niño;
         } catch (Dominio.PacienteNoEncontradoException e) {
             throw new NiñoNoExistenteException();
         }
-
     }
 
     @Override
     public void registrar(Niño niño) {
         this.repositorio.agregar(new Paciente("", "", Instant.now(), "", "", false));
+    }
+
+    @Override
+    public Niño obtenerPorDocumento(String document) throws NiñoNoExistenteException {
+        try {
+            Paciente paciente = this.repositorio.obtenerPorDocumento(document);
+            Niño niño = new Niño(
+                paciente.getDocumento(),
+                paciente.getNombre(),
+                paciente.getFechaNacimiento().toString(),
+                paciente.getServicioMedico(),
+                paciente.getMedicoCabecera(),
+                true,
+                "Niño"
+            );
+            return niño;
+        } catch (Dominio.PacienteNoEncontradoException e) {
+            throw new NiñoNoExistenteException();
+        }
     }
 
 }

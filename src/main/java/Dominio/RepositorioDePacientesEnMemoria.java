@@ -39,4 +39,9 @@ public class RepositorioDePacientesEnMemoria extends RepositorioDePacientes {
         this.data.add(paciente);
     }
 
+    @Override
+    public Paciente obtenerPorDocumento(String document) throws PacienteNoEncontradoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

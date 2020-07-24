@@ -14,4 +14,6 @@ public abstract class AdministradorDeNiños {
         System.out.println("El niño " + document + " ha sido eliminado.");
     }
 
+    public abstract Niño obtenerPorDocumento(String document) throws NiñoNoExistenteException;
+
 }
