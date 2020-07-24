@@ -4,22 +4,26 @@ import java.util.Date;
 
 public class Niño {
 
+    private final String id;
     private final String document;
     private final String nombre;
     private final String fechaDeNacimiento;
     private final String servicioMedico;
     private final String medicoCabezera;
     private final boolean fonasa;
-    private final String sexo;
 
-    public Niño(String document, String nombre, String fechaDeNacimiento, String servicioMedico, String medicoCabezera, boolean fonasa, String sexo) {
+    public Niño(String document, String nombre, String fechaDeNacimiento, String servicioMedico, String medicoCabezera, boolean fonasa) {
+        this.id = "";
         this.document = document;
         this.nombre = nombre;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.servicioMedico = servicioMedico;
         this.medicoCabezera = medicoCabezera;
         this.fonasa = fonasa;
-        this.sexo = sexo;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     public String getDocument() {
@@ -44,10 +48,6 @@ public class Niño {
     
     public boolean getFonasa() {
         return this.fonasa;
-    }
-    
-    public String getSexo() {
-        return this.sexo;
     }
 
 }

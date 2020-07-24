@@ -53,8 +53,7 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
                 paciente.getFechaNacimiento().toString(),
                 paciente.getServicioMedico(),
                 paciente.getMedicoCabecera(),
-                true,
-                "Niño"
+                true
             );
             return niño;
         } catch (Dominio.PacienteNoEncontradoException e) {
@@ -77,8 +76,7 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
                 paciente.getFechaNacimiento().toString(),
                 paciente.getServicioMedico(),
                 paciente.getMedicoCabecera(),
-                true,
-                "Niño"
+                true
             );
             return niño;
         } catch (Dominio.PacienteNoEncontradoException e) {
