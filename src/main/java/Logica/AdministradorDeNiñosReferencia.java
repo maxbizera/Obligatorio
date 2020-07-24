@@ -3,9 +3,13 @@ package Logica;
 import Dominio.Paciente;
 import Dominio.RepositorioDePacientes;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.time.format.*;
 
 public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
 
@@ -52,7 +56,14 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
 
     @Override
     public void registrar(Niño niño) {
-        this.repositorio.agregar(new Paciente("", "", Instant.now(), "", "", false));
+        /*LocalDate date = LocalDate.parse(niño.getFechaDeNacimiento(), DateTimeFormatter.ofPattern("uuuu-MMM-dd"));
+        Instant instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant();*/
+        this.repositorio.agregar(new Paciente(niño.getNombre(),
+                niño.getDocumento(), Instant.now(),
+                niño.getServicioMedico(),
+                niño.getMedicoCabezera(),
+                niño.getFonasa()
+        ));
     }
 
     @Override

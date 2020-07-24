@@ -47,11 +47,11 @@ public class AdministradorDeNiñosReferenciaTests {
         pacientes.add(niño);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(pacientes);
         AdministradorDeNiños administrador = new AdministradorDeNiñosReferencia(repositorio);
-        Niño respuestaEsperada = new Niño(niño.getId(), "", "", "", "", "", false);
+        Niño respuestaEsperada = new Niño(niño.getId(), "", "", "", "", false);
         //Act
         Niño respuestaActual = administrador.obtener(niño.getId());
         //Assert
-        assertEquals(respuestaEsperada.getId(), respuestaActual.getId());
+        assertEquals(respuestaEsperada.getDocumento(), respuestaActual.getDocumento());
     }
 
     @Test
@@ -77,4 +77,5 @@ public class AdministradorDeNiñosReferenciaTests {
         //Assert
         assertEquals(respuestaEsperada, repositorio.listar().size());
     }
+
 }
