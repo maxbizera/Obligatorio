@@ -37,9 +37,9 @@ public class RepositorioDePacientesEnMemoriaTest {
         data.add(resultadoEsperado);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
         //Act
-        Paciente resultadoActual = repositorio.obtener(resultadoEsperado.getId());
+        Paciente resultadoActual = repositorio.obtener(resultadoEsperado.getDocumento());
         //Assert
-        assertEquals(resultadoEsperado.getId(), resultadoActual.getId());
+        assertEquals(resultadoEsperado.getDocumento(), resultadoActual.getDocumento());
     }
 
     @Test

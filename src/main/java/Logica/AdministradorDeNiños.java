@@ -12,4 +12,6 @@ public abstract class AdministradorDeNiños {
 
     public abstract void eliminar(String id);
 
+    public abstract void modificar(Niño niño);
+
 }

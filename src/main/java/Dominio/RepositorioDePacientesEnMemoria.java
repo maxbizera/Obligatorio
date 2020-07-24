@@ -22,9 +22,9 @@ public class RepositorioDePacientesEnMemoria extends RepositorioDePacientes {
     @Override
     public Paciente obtener(String id) throws PacienteNoEncontradoException {
         Paciente respuesta = null;
-        for (Paciente niño : this.data) {
-            if (niño.getId().equals(id)) {
-                respuesta = niño;
+        for (Paciente paciente : this.data) {
+            if (paciente.getDocumento().equals(id)) {
+                respuesta = paciente;
             }
         }
         if (respuesta != null) {
@@ -41,11 +41,11 @@ public class RepositorioDePacientesEnMemoria extends RepositorioDePacientes {
 
     @Override
     public void eliminar(String id) {
-        this.data.forEach(paciente -> {
-            if (paciente.getDocumento().matches(id)) {
+        for (Paciente paciente : this.data) {
+            if (paciente.getDocumento().equals(id)) {
                 this.data.remove(paciente);
             }
-        });
+        }
     }
 
 }

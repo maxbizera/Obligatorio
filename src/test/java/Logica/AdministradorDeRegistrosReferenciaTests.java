@@ -62,7 +62,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         data.add(niño1);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
-        Logica.Consulta consulta = new Consulta(niño1.getId(), fechaDeRegistro, "", "", "");
+        Logica.Consulta consulta = new Consulta(niño1.getDocumento(), fechaDeRegistro, "", "", "");
         //Act
         administrador.agregarConsulta(consulta);
         //Assert
@@ -93,7 +93,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         data.add(niño1);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
-        Logica.Vacuna vacuna = new Vacuna(niño1.getId(), fechaDeRegistro, "Prueba", 1, false);
+        Logica.Vacuna vacuna = new Vacuna(niño1.getDocumento(), fechaDeRegistro, "Prueba", 1, false);
         //Act
         administrador.agregarVacuna(vacuna);
         //Assert
@@ -124,7 +124,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         data.add(niño1);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
         AdministradorDeRegistro administrador = new AdministradorDeRegistroReferencia(repositorio);
-        Logica.Control control = new Control(niño1.getId(), fechaDeRegistro, "", "");
+        Logica.Control control = new Control(niño1.getDocumento(), fechaDeRegistro, "", "");
         //Act
         administrador.agregarControl(control);
         //Assert

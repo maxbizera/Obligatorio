@@ -28,10 +28,18 @@ public class ModificarNiño extends javax.swing.JFrame {
 
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
-        
+        setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
+
         Niño niño = administradorDeNiños.obtener(document);
-        System.out.println("Vistas.ModificarNiño.<init>() " + niño.getDocumento());
+        this.txtDocumentoNiño.setText(niño.getDocumento());
+        this.txtNombreNiño.setText(niño.getNombre());
+        this.txtFonasa.setSelected(niño.getFonasa());
+        this.txtMedicoCabezera.setText(niño.getMedicoCabezera());
+        this.txtServicioMedico.setText(niño.getServicioMedico());
+        this.txtNacimientoAño.setSelectedItem(niño.getFechaDeNacimiento().split("-")[0]);
+        this.txtNacimientoMes.setSelectedItem(niño.getFechaDeNacimiento().split("-")[1]);
+        this.txtNacimientoDia.setSelectedItem(niño.getFechaDeNacimiento().split("-")[2]);
+
     }
 
     /**
@@ -175,11 +183,19 @@ public class ModificarNiño extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       new ListaNiños(administradorDeNiños).setVisible(true);
+        new ListaNiños(administradorDeNiños).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.administradorDeNiños.modificar(new Niño(
+                this.txtDocumentoNiño.getText(),
+                this.txtNombreNiño.getText(),
+                this.txtNacimientoAño.getSelectedItem().toString().concat("-").concat(this.txtNacimientoMes.getSelectedItem().toString()).concat("-").concat(this.txtNacimientoDia.getSelectedItem().toString()),
+                this.txtServicioMedico.getText(),
+                this.txtMedicoCabezera.getText(),
+                this.txtFonasa.isSelected()
+        ));
         JOptionPane.showMessageDialog(null, "El niño " + this.txtNombreNiño.getText() + " ha sido modificado correctamente.");
         new ListaNiños(administradorDeNiños).setVisible(true);
         dispose();

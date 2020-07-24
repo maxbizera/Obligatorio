@@ -47,9 +47,9 @@ public class AdministradorDeNiñosReferenciaTests {
         pacientes.add(niño);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(pacientes);
         AdministradorDeNiños administrador = new AdministradorDeNiñosReferencia(repositorio);
-        Niño respuestaEsperada = new Niño(niño.getId(), "", "", "", "", false);
+        Niño respuestaEsperada = new Niño(niño.getDocumento(), "", "", "", "", false);
         //Act
-        Niño respuestaActual = administrador.obtener(niño.getId());
+        Niño respuestaActual = administrador.obtener(niño.getDocumento());
         //Assert
         assertEquals(respuestaEsperada.getDocumento(), respuestaActual.getDocumento());
     }
