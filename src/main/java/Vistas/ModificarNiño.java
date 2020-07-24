@@ -30,8 +30,8 @@ public class ModificarNiño extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
         
-        Niño niño = administradorDeNiños.obtenerPorDocumento(document);
-        System.out.println("Vistas.ModificarNiño.<init>() " + niño.getDocument());
+        Niño niño = administradorDeNiños.obtener(document);
+        System.out.println("Vistas.ModificarNiño.<init>() " + niño.getDocumento());
     }
 
     /**

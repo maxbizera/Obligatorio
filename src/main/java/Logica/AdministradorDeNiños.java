@@ -10,10 +10,6 @@ public abstract class AdministradorDeNiños {
 
     public abstract void registrar(Niño niño);
 
-    public void eliminar(String document) {
-        System.out.println("El niño " + document + " ha sido eliminado.");
-    }
-
-    public abstract Niño obtenerPorDocumento(String document) throws NiñoNoExistenteException;
+    public abstract void eliminar(String id);
 
 }

@@ -3,35 +3,46 @@ package Vistas;
 import Logica.AdministradorDeNiños;
 import Logica.NiñoNoExistenteException;
 import Logica.ResumenNiño;
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyVetoException;
-import java.beans.VetoableChangeListener;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 
 public class ListaNiños extends javax.swing.JFrame {
-    
+
     private String documentSelected;
 
     private final AdministradorDeNiños administradorDeNiños;
-    private final Object[][] niños;
+    private Object[][] niños;
 
     public ListaNiños(AdministradorDeNiños administradorDeNiño) {
 
         this.administradorDeNiños = administradorDeNiño;
 
-        this.niños = new Object[this.administradorDeNiños.listar().size()][5];
+        recargarLista();
+
+        initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
+
+        jTableListaNiños.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            documentSelected = jTableListaNiños.getValueAt(jTableListaNiños.getSelectedRow(), 1).toString();
+            jMenuItemEliminarNiño.setEnabled(true);
+            jMenuItemModificarNiño.setEnabled(true);
+            btnControles.setEnabled(true);
+            btnVacunas.setEnabled(true);
+        });
+    }
+
+    private void recargarLista() {
+        ArrayList<ResumenNiño> listadoDeNiños = this.administradorDeNiños.listar();
+        this.niños = new Object[listadoDeNiños.size()][5];
 
         int index = 0;
-        for (ResumenNiño niño : this.administradorDeNiños.listar()) {
+        for (ResumenNiño niño : listadoDeNiños) {
             this.niños[index][0] = niño.getNombre();
             this.niños[index][1] = niño.getDocumento();
             this.niños[index][2] = niño.getServicioDeSalud();
@@ -39,20 +50,6 @@ public class ListaNiños extends javax.swing.JFrame {
             ++index;
         }
 
-        initComponents();
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
-
-        jTableListaNiños.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            @Override
-            public void valueChanged(ListSelectionEvent event) {
-                documentSelected = jTableListaNiños.getValueAt(jTableListaNiños.getSelectedRow(), 1).toString();
-                jMenuItemEliminarNiño.setEnabled(true);
-                jMenuItemModificarNiño.setEnabled(true);
-                btnControles.setEnabled(true);
-                btnVacunas.setEnabled(true);
-            }
-        });
     }
 
     /**
@@ -218,8 +215,10 @@ public class ListaNiños extends javax.swing.JFrame {
 
     private void jMenuItemEliminarNiñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEliminarNiñoActionPerformed
         int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este niño?");
-        if ( input == 0 ) {
+        if (input == 0) {
             administradorDeNiños.eliminar(this.documentSelected);
+            this.recargarLista();
+
         }
     }//GEN-LAST:event_jMenuItemEliminarNiñoActionPerformed
 

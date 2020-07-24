@@ -6,6 +6,7 @@
 package Vistas;
 
 import Logica.AdministradorDeNiños;
+import Logica.Niño;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -17,17 +18,16 @@ import javax.swing.JOptionPane;
 public class AgregarNiño extends javax.swing.JFrame {
 
     private AdministradorDeNiños administradorDeNiños;
-    
+
     /**
      * Creates new form AgregarNiño
      */
-
     AgregarNiño(AdministradorDeNiños administradorDeNiños) {
         this.administradorDeNiños = administradorDeNiños;
-        
+
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
+        setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
     }
 
     /**
@@ -171,11 +171,21 @@ public class AgregarNiño extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       new ListaNiños(administradorDeNiños).setVisible(true);
+        new ListaNiños(administradorDeNiños).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.administradorDeNiños.registrar(
+                new Niño(
+                        this.txtDocumentoNiño.getText(),
+                        this.txtNombreNiño.getText(),
+                        this.txtNacimientoAño.getSelectedItem().toString().concat("-").concat(this.txtNacimientoMes.getSelectedItem().toString()).concat("-").concat(this.txtNacimientoDia.getSelectedItem().toString()),
+                        this.txtServicioMedico.getText(),
+                        this.txtMedicoCabezera.getText(),
+                        this.txtFonasa.isSelected()
+                )
+        );
         JOptionPane.showMessageDialog(null, "El niño " + this.txtNombreNiño.getText() + " ha sido agregado correctamente.");
         new ListaNiños(administradorDeNiños).setVisible(true);
         dispose();

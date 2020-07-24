@@ -40,8 +40,12 @@ public class RepositorioDePacientesEnMemoria extends RepositorioDePacientes {
     }
 
     @Override
-    public Paciente obtenerPorDocumento(String document) throws PacienteNoEncontradoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void eliminar(String id) {
+        this.data.forEach(paciente -> {
+            if (paciente.getId().matches(id)) {
+                this.data.remove(paciente);
+            }
+        });
     }
 
 }

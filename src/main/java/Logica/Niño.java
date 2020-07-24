@@ -1,11 +1,7 @@
 package Logica;
 
-import java.util.Date;
-import java.util.UUID;
-
 public class Niño {
 
-    private final String id;
     private final String document;
     private final String nombre;
     private final String fechaDeNacimiento;
@@ -14,7 +10,6 @@ public class Niño {
     private final boolean fonasa;
 
     public Niño(String document, String nombre, String fechaDeNacimiento, String servicioMedico, String medicoCabezera, boolean fonasa) {
-        this.id = UUID.randomUUID().toString();
         this.document = document;
         this.nombre = nombre;
         this.fechaDeNacimiento = fechaDeNacimiento;
@@ -23,21 +18,7 @@ public class Niño {
         this.fonasa = fonasa;
     }
 
-    public String getId() {
-        return this.id;
-    }
-
-    public Niño(String id, String document, String nombre, String fechaDeNacimiento, String servicioMedico, String medicoCabezera, boolean fonasa) {
-        this.document = document;
-        this.nombre = nombre;
-        this.fechaDeNacimiento = fechaDeNacimiento;
-        this.servicioMedico = servicioMedico;
-        this.medicoCabezera = medicoCabezera;
-        this.fonasa = fonasa;
-        this.id = id;
-    }
-
-    public String getDocument() {
+    public String getDocumento() {
         return this.document;
     }
 

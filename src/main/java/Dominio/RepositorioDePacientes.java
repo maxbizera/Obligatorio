@@ -10,6 +10,6 @@ public abstract class RepositorioDePacientes {
 
     public abstract void agregar(Paciente paciente);
 
-    public abstract Paciente obtenerPorDocumento(String document) throws PacienteNoEncontradoException;
+    public abstract void eliminar(String id);
 
 }

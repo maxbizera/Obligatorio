@@ -4,22 +4,14 @@ import Dominio.RepositorioDePacientes;
 import Dominio.RepositorioDePacientesEnMemoria;
 import Logica.AdministradorDeNiños;
 import Logica.AdministradorDeNiñosReferencia;
-import Logica.AdministradorDeRegistro;
-import Logica.AdministradorDeRegistroReferencia;
-import Logica.NiñoNoExistenteException;
 import Vistas.ListaNiños;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.time.Instant;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class main {
 
