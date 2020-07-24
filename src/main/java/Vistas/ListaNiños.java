@@ -5,8 +5,11 @@
  */
 package Vistas;
 
+import Logica.AdministradorDeNiños;
+import Logica.ResumenNiño;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,13 +17,26 @@ import java.awt.Toolkit;
  */
 public class ListaNiños extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ListaNiños
-     */
-    public ListaNiños() {
+    private final AdministradorDeNiños administradorDeNiños;
+    private final Object[][] niños;
+
+    public ListaNiños(AdministradorDeNiños administradorDeNiño) {
+
+        this.administradorDeNiños = administradorDeNiño;
+
+        this.niños = new Object[2][5];
+
+        for (ResumenNiño niño : this.administradorDeNiños.listar()) {
+            this.niños[0][0] = niño.getNombre();
+            this.niños[0][1] = niño.getDocumento();
+            this.niños[0][2] = niño.getServicioDeSalud();
+            this.niños[0][3] = niño.getEdad();
+        }
+
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
+        setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
+
     }
 
     /**
@@ -46,26 +62,17 @@ public class ListaNiños extends javax.swing.JFrame {
         setName("listaNiñosFrame"); // NOI18N
 
         jTableListaNiños.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Pedro",  new Integer(1234567),  new Integer(1)}
-            },
+            this.niños,
             new String [] {
-                "Nombre", "Documento", "Cantidad de consultas"
+                "Nombre", "Documento", "Servicio de Salud", "Edad"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(jTableListaNiños);
@@ -121,40 +128,6 @@ public class ListaNiños extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaNiños.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaNiños.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaNiños.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaNiños.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ListaNiños().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;

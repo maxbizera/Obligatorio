@@ -25,7 +25,7 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
 
     @Override
     public ArrayList<ResumenNiño> listar() {
-        ArrayList<ResumenNiño> respuesta = new ArrayList<ResumenNiño>();
+        ArrayList<ResumenNiño> respuesta = new ArrayList<>();
         this.repositorio.listar().forEach(niño -> {
             respuesta.add(new ResumenNiño(niño.getId(), niño.getNombre(), niño.getDocumento(), "", niño.getServicioMedico()));
         });

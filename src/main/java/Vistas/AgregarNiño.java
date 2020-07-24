@@ -106,13 +106,13 @@ public class AgregarNiño extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new ListaNiños().setVisible(true);
+       // new ListaNiños().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JOptionPane.showMessageDialog(null, "El niño " + this.txtNombreNiño.getText() + " ha sido agregado correctamente.");
-         new ListaNiños().setVisible(true);
+         //new ListaNiños().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
