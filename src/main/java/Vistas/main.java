@@ -6,6 +6,7 @@ import Logica.AdministradorDeNiñosReferencia;
 import Logica.AdministradorDeRegistro;
 import Logica.AdministradorDeRegistroReferencia;
 import Logica.NiñoNoExistenteException;
+import Vistas.ListaNiños;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,6 +29,8 @@ public class main {
                 Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
+        new ListaNiños().setVisible(true);
     }
     
 }
