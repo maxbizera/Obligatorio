@@ -61,8 +61,4 @@ public class Niño {
         return this.fonasa;
     }
 
-    public String getId() {
-        return id;
-    }
-
 }
