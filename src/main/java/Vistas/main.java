@@ -25,8 +25,16 @@ public class main {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        try {
-            FileReader file = new FileReader("/home/gcarrillo/Desktop/crunchify.txt");
+        RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(new ArrayList<Paciente>() {
+                {
+                    add(new Paciente("Guillermo Carrillo", "V18942891", new Date(), "HCC", "Krivoy", false));
+                    add(new Paciente("Maximiliano Bizera", "V1231231", new Date(), "HCC", "Krivoy", false));
+                }
+            });
+        AdministradorDeNiños administradorDeNiño = new AdministradorDeNiñosReferencia(repositorio);
+        new ListaNiños(administradorDeNiño).setVisible(true);
+        /*try {
+            FileReader file = new FileReader("C:\\Users\\maxbi\\Desktop\\crunchify.txt");
             JSONParser jsonParser = new JSONParser();
             Object estado = jsonParser.parse(file);
             System.out.println(estado.toString());
@@ -61,7 +69,7 @@ public class main {
             new ListaNiños(administradorDeNiño).setVisible(true);
         } catch (IOException | ParseException e) {
             System.exit(0);
-        }
+        }*/
 
     }
 
@@ -93,7 +101,7 @@ public class main {
             try {
 
                 // Constructs a FileWriter given a file name, using the platform's default charset
-                file = new FileWriter("/home/gcarrillo/Desktop/crunchify.txt");
+                file = new FileWriter("C:\\Users\\maxbi\\Desktop\\crunchify.txt");
                 file.write(obj.toJSONString());
 
             } catch (IOException e) {

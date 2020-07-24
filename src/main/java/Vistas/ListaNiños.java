@@ -2,8 +2,14 @@ package Vistas;
 
 import Logica.AdministradorDeNiños;
 import Logica.ResumenNiño;
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyVetoException;
+import java.beans.VetoableChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class ListaNiños extends javax.swing.JFrame {
 
@@ -16,11 +22,13 @@ public class ListaNiños extends javax.swing.JFrame {
 
         this.niños = new Object[2][5];
 
+        int index = 0;
         for (ResumenNiño niño : this.administradorDeNiños.listar()) {
-            this.niños[0][0] = niño.getNombre();
-            this.niños[0][1] = niño.getDocumento();
-            this.niños[0][2] = niño.getServicioDeSalud();
-            this.niños[0][3] = niño.getEdad();
+            this.niños[index][0] = niño.getNombre();
+            this.niños[index][1] = niño.getDocumento();
+            this.niños[index][2] = niño.getServicioDeSalud();
+            this.niños[index][3] = niño.getEdad();
+            ++index;
         }
 
         initComponents();
@@ -45,6 +53,8 @@ public class ListaNiños extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemModificarNiño = new javax.swing.JMenuItem();
+        jMenuItemEliminarNiño = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de niños");
@@ -89,6 +99,19 @@ public class ListaNiños extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
+        jMenuItemModificarNiño.setText("Modificar niño");
+        jMenuItemModificarNiño.setEnabled(false);
+        jMenuItemModificarNiño.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemModificarNiñoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemModificarNiño);
+
+        jMenuItemEliminarNiño.setText("Eliminar niño");
+        jMenuItemEliminarNiño.setEnabled(false);
+        jMenu2.add(jMenuItemEliminarNiño);
+
         jMenuBar.add(jMenu2);
 
         setJMenuBar(jMenuBar);
@@ -118,6 +141,10 @@ public class ListaNiños extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItemModificarNiñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModificarNiñoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemModificarNiñoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
@@ -125,6 +152,8 @@ public class ListaNiños extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItemEliminarNiño;
+    private javax.swing.JMenuItem jMenuItemModificarNiño;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableListaNiños;
     // End of variables declaration//GEN-END:variables
