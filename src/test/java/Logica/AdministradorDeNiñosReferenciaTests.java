@@ -3,9 +3,9 @@ package Logica;
 import Dominio.RepositorioDePacientesEnMemoria;
 import Dominio.Paciente;
 import Dominio.RepositorioDePacientes;
+import java.time.Instant;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
-import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AdministradorDeNiñosReferenciaTests {
@@ -25,7 +25,7 @@ public class AdministradorDeNiñosReferenciaTests {
     @Test
     public void deberiaPoderListarTodosLosNiñosExistentesEnElSistema() {
         //Arrange
-        Paciente niño1 = new Paciente("", "", new Date(), "", "", false);;
+        Paciente niño1 = new Paciente("", "", Instant.now(), "", "", false);;
         ArrayList<Paciente> lista = new ArrayList<>();
         lista.add((niño1));
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(lista);
@@ -42,7 +42,7 @@ public class AdministradorDeNiñosReferenciaTests {
     @Test
     public void deberiaPoderObtenerUnNiñoExistentePorId() throws NiñoNoExistenteException {
         //Arrange
-        Paciente niño = new Paciente("", "", new Date(), "", "", false);
+        Paciente niño = new Paciente("", "", Instant.now(), "", "", false);
         ArrayList<Paciente> pacientes = new ArrayList<>();
         pacientes.add(niño);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(pacientes);

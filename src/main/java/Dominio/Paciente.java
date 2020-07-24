@@ -1,21 +1,21 @@
 package Dominio;
 
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.UUID;
+ import java.util.UUID;
 
 public class Paciente {
 
     private final UUID id;
     private final String nombre;
     private final String documento;
-    private final Date fechaNacimiento;
+    private final Instant fechaNacimiento;
     private final String servicioMedico;
     private final String medicoCabecera;
     private final boolean tieneFonasa;
     private final ArrayList<Registro> registros;
 
-    public Paciente(String nombre, String documento, Date fechaDeNacimiento, String servicioMedico, String medicoCabecera, boolean tieneFonasa) {
+    public Paciente(String nombre, String documento, Instant fechaDeNacimiento, String servicioMedico, String medicoCabecera, boolean tieneFonasa) {
         this.id = UUID.randomUUID();
         this.registros = new ArrayList<>();
         this.nombre = nombre;
@@ -26,7 +26,7 @@ public class Paciente {
         this.documento = documento;
     }
 
-    public Paciente(ArrayList<Registro> consultas, String nombre, String documento, Date fechaDeNacimiento, String servicioMedico, String medicoCabecera, boolean tieneFonasa) {
+    public Paciente(ArrayList<Registro> consultas, String nombre, String documento, Instant fechaDeNacimiento, String servicioMedico, String medicoCabecera, boolean tieneFonasa) {
         this.id = UUID.randomUUID();
         this.registros = consultas;
         this.nombre = nombre;
@@ -57,7 +57,7 @@ public class Paciente {
         return documento;
     }
 
-    public Date getFechaNacimiento() {
+    public Instant getFechaNacimiento() {
         return fechaNacimiento;
     }
 

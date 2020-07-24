@@ -3,6 +3,7 @@ package Logica;
 import Dominio.RepositorioDePacientesEnMemoria;
 import Dominio.Paciente;
 import Dominio.RepositorioDePacientes;
+import java.time.Instant;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +19,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         ArrayList< Dominio.Registro> consultas
                 = new ArrayList<>();
         consultas.add(consulta);
-        Paciente niño1 = new Paciente(consultas, "", "", new Date(), "", "", false);
+        Paciente niño1 = new Paciente(consultas, "", "", Instant.now(), "", "", false);
         ArrayList<Paciente> lista = new ArrayList<>();
         lista.add((niño1));
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(lista);
@@ -39,7 +40,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         ArrayList< Dominio.Registro> consultas
                 = new ArrayList<>();
         consultas.add(consulta);
-        Paciente niño1 = new Paciente(consultas, "", "", new Date(), "", "", false);
+        Paciente niño1 = new Paciente(consultas, "", "", Instant.now(), "", "", false);
         ArrayList<Paciente> lista = new ArrayList<>();
         lista.add((niño1));
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(lista);
@@ -56,7 +57,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         //Arrange
         int respuestaEsperada = 1;
         Date fechaDeRegistro = new Date();
-        Paciente niño1 = new Paciente("", "", new Date(), "", "", false);
+        Paciente niño1 = new Paciente("", "", Instant.now(), "", "", false);
         ArrayList<Paciente> data = new ArrayList<>();
         data.add(niño1);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
@@ -87,7 +88,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         //Arrange
         int respuestaEsperada = 1;
         Date fechaDeRegistro = new Date();
-        Paciente niño1 = new Paciente("", "", new Date(), "", "", false);
+        Paciente niño1 = new Paciente("", "", Instant.now(), "", "", false);
         ArrayList<Paciente> data = new ArrayList<>();
         data.add(niño1);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
@@ -118,7 +119,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         //Arrange
         int respuestaEsperada = 1;
         Date fechaDeRegistro = new Date();
-        Paciente niño1 = new Paciente("", "", new Date(), "", "", false);
+        Paciente niño1 = new Paciente("", "", Instant.now(), "", "", false);
         ArrayList<Paciente> data = new ArrayList<>();
         data.add(niño1);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);

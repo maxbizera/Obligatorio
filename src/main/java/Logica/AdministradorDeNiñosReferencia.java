@@ -8,6 +8,9 @@ package Logica;
 import Dominio.Paciente;
 import Dominio.Registro;
 import Dominio.RepositorioDePacientes;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -27,7 +30,14 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
     public ArrayList<ResumenNiño> listar() {
         ArrayList<ResumenNiño> respuesta = new ArrayList<>();
         this.repositorio.listar().forEach(niño -> {
-            respuesta.add(new ResumenNiño(niño.getId(), niño.getNombre(), niño.getDocumento(), "", niño.getServicioMedico()));
+            Instant now = Instant.now();
+            Instant ago = niño.getFechaNacimiento();
+
+            long edad = ChronoUnit.YEARS.between(
+                    ago.atZone(ZoneId.systemDefault()),
+                    now.atZone(ZoneId.systemDefault()));
+            
+            respuesta.add(new ResumenNiño(niño.getId(), niño.getNombre(), niño.getDocumento(), String.valueOf(edad), niño.getServicioMedico()));
         });
 
         return respuesta;
@@ -47,7 +57,7 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
 
     @Override
     public void registrar(Niño niño) {
-        this.repositorio.agregar(new Paciente("", "", new Date(), "", "", false));
+        this.repositorio.agregar(new Paciente("", "", Instant.now(), "", "", false));
     }
 
 }

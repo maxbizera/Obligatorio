@@ -1,7 +1,7 @@
 package Dominio;
 
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,7 +32,7 @@ public class RepositorioDePacientesEnMemoriaTest {
     @Test
     public void deberiaPoderObtenerUnPacienteEspecificoSiSeEncuentraEnElRepositorio() throws PacienteNoEncontradoException {
         //Arrange
-        Paciente resultadoEsperado = new Paciente("", "", new Date(), "", "", false);
+        Paciente resultadoEsperado = new Paciente("", "", Instant.now(), "", "", false);
         ArrayList<Paciente> data = new ArrayList<>();
         data.add(resultadoEsperado);
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(data);
@@ -57,7 +57,7 @@ public class RepositorioDePacientesEnMemoriaTest {
     public void deberiaPoderAgregarUnPacienteAlRepositorio() {
         //Arrange
         int resultadoEsperado = 1;
-        Paciente paciente = new Paciente("", "", new Date(), "", "", false);
+        Paciente paciente = new Paciente("", "", Instant.now(), "", "", false);
         ArrayList<Paciente> pacientes = new ArrayList<>();
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(pacientes);
         //Act

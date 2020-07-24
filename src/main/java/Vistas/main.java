@@ -13,7 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.Instant;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONArray;
@@ -34,8 +34,8 @@ public class main {
             RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(new ArrayList<Paciente>() {
 
                 {
-                    add(new Paciente("Guillermo Carrillo", "V18942891", new Date(), "HCC", "Krivoy", false));
-                    add(new Paciente("Maximiliano Bizera", "V1231231", new Date(), "HCC", "Krivoy", false));
+                    add(new Paciente("Guillermo Carrillo", "V18942891", Instant.now(), "HCC", "Krivoy", false));
+                    add(new Paciente("Maximiliano Bizera", "V1231231", Instant.now(), "HCC", "Krivoy", false));
 
                 }
 
