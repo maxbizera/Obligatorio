@@ -12,7 +12,6 @@ public class Niño {
     private final String servicioMedico;
     private final String medicoCabezera;
     private final boolean fonasa;
-    private final String sexo;
 
     public Niño(String document, String nombre, String fechaDeNacimiento, String servicioMedico, String medicoCabezera, boolean fonasa, String sexo) {
         this.id = UUID.randomUUID().toString();
@@ -22,7 +21,10 @@ public class Niño {
         this.servicioMedico = servicioMedico;
         this.medicoCabezera = medicoCabezera;
         this.fonasa = fonasa;
-        this.sexo = sexo;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     public Niño(String id, String document, String nombre, String fechaDeNacimiento, String servicioMedico, String medicoCabezera, boolean fonasa, String sexo) {

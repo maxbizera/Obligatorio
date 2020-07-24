@@ -54,7 +54,6 @@ public class AgregarNiño extends javax.swing.JFrame {
         txtServicioMedico = new javax.swing.JTextField();
         txtMedicoCabezera = new javax.swing.JTextField();
         txtFonasa = new javax.swing.JCheckBox();
-        txtSexo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agregar nuevo niño");
@@ -97,8 +96,6 @@ public class AgregarNiño extends javax.swing.JFrame {
 
         txtFonasa.setText("¿Tiene fonasa?");
 
-        txtSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo", "Niña", "Niño" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,8 +126,7 @@ public class AgregarNiño extends javax.swing.JFrame {
                                 .addComponent(txtNacimientoAño, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(txtServicioMedico)
                             .addComponent(txtMedicoCabezera)
-                            .addComponent(txtFonasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtFonasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -164,9 +160,7 @@ public class AgregarNiño extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(txtFonasa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -203,6 +197,5 @@ public class AgregarNiño extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> txtNacimientoMes;
     private javax.swing.JTextField txtNombreNiño;
     private javax.swing.JTextField txtServicioMedico;
-    private javax.swing.JComboBox<String> txtSexo;
     // End of variables declaration//GEN-END:variables
 }

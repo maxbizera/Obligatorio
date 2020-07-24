@@ -54,7 +54,6 @@
                           <Component id="txtServicioMedico" max="32767" attributes="0"/>
                           <Component id="txtMedicoCabezera" max="32767" attributes="0"/>
                           <Component id="txtFonasa" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtSexo" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -101,9 +100,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="txtFonasa" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
-              <Component id="txtSexo" min="-2" pref="27" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jButton2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
@@ -203,20 +200,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xbf;Tiene fonasa?"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="txtSexo">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="Sexo"/>
-            <StringItem index="1" value="Ni&#xf1;a"/>
-            <StringItem index="2" value="Ni&#xf1;o"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
