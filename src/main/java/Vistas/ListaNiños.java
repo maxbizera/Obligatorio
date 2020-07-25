@@ -32,8 +32,7 @@ public class ListaNiños extends javax.swing.JFrame {
             documentSelected = jTableListaNiños.getValueAt(jTableListaNiños.getSelectedRow(), 1).toString();
             jMenuItemEliminarNiño.setEnabled(true);
             jMenuItemModificarNiño.setEnabled(true);
-            btnControles.setEnabled(true);
-            btnVacunas.setEnabled(true);
+            jMenuItemDetalle.setEnabled(true);
         });
     }
 
@@ -66,13 +65,12 @@ public class ListaNiños extends javax.swing.JFrame {
         popupMenu1 = new java.awt.PopupMenu();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableListaNiños = new javax.swing.JTable();
-        btnVacunas = new javax.swing.JButton();
-        btnControles = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemDetalle = new javax.swing.JMenuItem();
         jMenuItemModificarNiño = new javax.swing.JMenuItem();
         jMenuItemEliminarNiño = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -100,22 +98,6 @@ public class ListaNiños extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTableListaNiños);
 
-        btnVacunas.setText("Ver vacunas");
-        btnVacunas.setEnabled(false);
-        btnVacunas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVacunasActionPerformed(evt);
-            }
-        });
-
-        btnControles.setText("Ver controles");
-        btnControles.setEnabled(false);
-        btnControles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnControlesActionPerformed(evt);
-            }
-        });
-
         jMenu1.setText("Archivo");
 
         jMenuItem1.setText("Salir");
@@ -137,6 +119,15 @@ public class ListaNiños extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem2);
+
+        jMenuItemDetalle.setText("Ver detalle");
+        jMenuItemDetalle.setEnabled(false);
+        jMenuItemDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDetalleActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemDetalle);
 
         jMenuItemModificarNiño.setText("Modificar niño");
         jMenuItemModificarNiño.setEnabled(false);
@@ -177,20 +168,11 @@ public class ListaNiños extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnControles)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVacunas))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnVacunas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnControles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -227,20 +209,17 @@ public class ListaNiños extends javax.swing.JFrame {
         new MasInformación().setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void btnControlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnControlesActionPerformed
-        new ListaControlesDeNiño(administradorDeNiños, this.documentSelected).setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnControlesActionPerformed
-
-    private void btnVacunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVacunasActionPerformed
-        new ListaVacunasDeNiño(administradorDeNiños, this.documentSelected).setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnVacunasActionPerformed
+    private void jMenuItemDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDetalleActionPerformed
+        try {
+            new Detalle(administradorDeNiños, this.documentSelected).setVisible(true);
+            setVisible(false);
+        } catch (NiñoNoExistenteException ex) {
+            Logger.getLogger(ListaNiños.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItemDetalleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnControles;
-    private javax.swing.JButton btnVacunas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
@@ -248,6 +227,7 @@ public class ListaNiños extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItemDetalle;
     private javax.swing.JMenuItem jMenuItemEliminarNiño;
     private javax.swing.JMenuItem jMenuItemModificarNiño;
     private javax.swing.JScrollPane jScrollPane2;

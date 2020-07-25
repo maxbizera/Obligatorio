@@ -16,14 +16,14 @@ import javax.swing.JOptionPane;
  *
  * @author maxbi
  */
-public class ModificarNiño extends javax.swing.JFrame {
+public class Detalle extends javax.swing.JFrame {
 
     private final AdministradorDeNiños administradorDeNiños;
 
     /**
      * Creates new form AgregarNiño
      */
-    ModificarNiño(AdministradorDeNiños administradorDeNiños, String document) throws NiñoNoExistenteException {
+    Detalle(AdministradorDeNiños administradorDeNiños, String document) throws NiñoNoExistenteException {
         this.administradorDeNiños = administradorDeNiños;
 
         initComponents();
@@ -40,6 +40,7 @@ public class ModificarNiño extends javax.swing.JFrame {
         this.txtNacimientoMes.setSelectedItem(niño.getFechaDeNacimiento().split("-")[1]);
         this.txtNacimientoDia.setSelectedItem(niño.getFechaDeNacimiento().split("-")[2]);
 
+        setTitle("Detalle del niño " + niño.getDocumento());
     }
 
     /**
@@ -68,11 +69,15 @@ public class ModificarNiño extends javax.swing.JFrame {
         txtFonasa = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Modificar nuevo niño");
+        setTitle("Detalle del niño");
 
         jLabel1.setText("Nombre del niño");
 
         jLabel2.setText("Documento del niño");
+
+        txtNombreNiño.setEnabled(false);
+
+        txtDocumentoNiño.setEnabled(false);
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -94,19 +99,27 @@ public class ModificarNiño extends javax.swing.JFrame {
         for (int i = 1; i<=31; ++i) {
             txtNacimientoDia.addItem(""+i+"");
         }
+        txtNacimientoDia.setEnabled(false);
 
         txtNacimientoMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Més", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        txtNacimientoMes.setEnabled(false);
 
         txtNacimientoAño.addItem("Año");
         for (int i = 2020; i>=1990; --i) {
             txtNacimientoAño.addItem(""+i+"");
         }
+        txtNacimientoAño.setEnabled(false);
 
         jLabel4.setText("Servicio medico");
 
         jLabel5.setText("Medico de cabezera");
 
+        txtServicioMedico.setEnabled(false);
+
+        txtMedicoCabezera.setEnabled(false);
+
         txtFonasa.setText("¿Tiene fonasa?");
+        txtFonasa.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

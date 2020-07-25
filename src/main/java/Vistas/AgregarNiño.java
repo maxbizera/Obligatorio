@@ -83,7 +83,7 @@ public class AgregarNiño extends javax.swing.JFrame {
             txtNacimientoDia.addItem(""+i+"");
         }
 
-        txtNacimientoMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        txtNacimientoMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Més", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         txtNacimientoAño.addItem("Año");
         for (int i = 2020; i>=1990; --i) {
