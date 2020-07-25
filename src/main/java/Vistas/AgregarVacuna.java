@@ -10,8 +10,10 @@ import Logica.AdministradorDeControl;
 import Logica.AdministradorDeNiños;
 import Logica.AdministradorDeVacunas;
 import Logica.NiñoNoExistenteException;
+import Logica.ResumenVacuna;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -144,6 +146,13 @@ public class AgregarVacuna extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JOptionPane.showMessageDialog(null, "La vacuna fue agregado correctamente.");
+        administradorDeVacunas.agregar(new ResumenVacuna(
+                this.documento,
+                new Date(),
+                txtNombre.getText(),
+                txtDosis.getText(),
+                txtObligatoria.isSelected()
+        ));
         try {
             new Detalle(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, this.documento).setVisible(true);
             dispose();

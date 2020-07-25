@@ -17,6 +17,7 @@ import Logica.ResumenControl;
 import Logica.ResumenVacuna;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -66,29 +67,32 @@ public class Detalle extends javax.swing.JFrame {
 
         setTitle("Detalle del niño " + niño.getDocumento());
         
-        this.consultas = new Object[1][3];
+        ArrayList<ResumenConsulta> listadoDeConsultas = administradorDeConsultas.listar(documento);
+        this.consultas = new Object[listadoDeConsultas.size()][3];
 
         int index1 = 0;
-        for (ResumenConsulta consulta : administradorDeConsultas.listar(documento)) {
+        for (ResumenConsulta consulta : listadoDeConsultas) {
             this.consultas[index1][0] = consulta.medico;
             this.consultas[index1][1] = consulta.diagnostico;
             this.consultas[index1][2] = consulta.recomendaciones;
             ++index1;
         }
         
-        this.controles = new Object[1][2];
+        ArrayList<ResumenControl> listadoDeControles = administradorDeControles.listar(documento);
+        this.controles = new Object[listadoDeControles.size()][2];
 
         int index2 = 0;
-        for (ResumenControl control : administradorDeControles.listar(documento)) {
-            this.controles[0][0] = control.peso;
-            this.controles[0][1] = control.altura;
+        for (ResumenControl control : listadoDeControles) {
+            this.controles[index2][0] = control.peso;
+            this.controles[index2][1] = control.altura;
             ++index2;
         }
         
-        this.vacunas = new Object[1][3];
+        ArrayList<ResumenVacuna> listadoDeVacunas = administradorDeVacunas.listar(documento);
+        this.vacunas = new Object[listadoDeVacunas.size()][3];
 
         int index3 = 0;
-        for (ResumenVacuna vacuna : administradorDeVacunas.listar(documento)) {
+        for (ResumenVacuna vacuna : listadoDeVacunas) {
             this.vacunas[index3][0] = vacuna.nombre;
             this.vacunas[index3][1] = vacuna.dosis;
             this.vacunas[index3][2] = vacuna.obligatoria;

@@ -7,10 +7,10 @@ public class ResumenVacuna {
     public String documento;
     public Date fechaDeRegistro;
     public String nombre;
-    public int dosis;
+    public String dosis;
     public boolean obligatoria;
 
-    public ResumenVacuna(String documento, Date fechaDeRegistro, String nombre, int dosis, boolean obligatoria) {
+    public ResumenVacuna(String documento, Date fechaDeRegistro, String nombre, String dosis, boolean obligatoria) {
         this.documento = documento;
         this.fechaDeRegistro = fechaDeRegistro;
         this.nombre = nombre;

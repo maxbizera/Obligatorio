@@ -6,10 +6,10 @@ public class Vacuna {
 
     private final Date fechaDeRegistro;
     private final String nombre;
-    private final int dosis;
+    private final String dosis;
     private final boolean obligatoria;
 
-    public Vacuna(Date fechaDeRegistro, String nombre, int dosis, boolean obligatoria) {
+    public Vacuna(Date fechaDeRegistro, String nombre, String dosis, boolean obligatoria) {
         this.fechaDeRegistro = fechaDeRegistro;
         this.nombre = nombre;
         this.dosis = dosis;
@@ -20,7 +20,7 @@ public class Vacuna {
         return this.fechaDeRegistro;
     }
 
-    public int getDosis() {
+    public String getDosis() {
         return this.dosis;
     }
 

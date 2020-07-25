@@ -65,7 +65,7 @@ public class AgregarConsulta extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Agregar nuevo vacuna");
+        setTitle("Agregar nuevo consulta");
 
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +147,7 @@ public class AgregarConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, "La vacuna fue agregado correctamente.");
+        JOptionPane.showMessageDialog(null, "La consulta fue agregado correctamente.");
         administradorDeConsultas.agregar(new ResumenConsulta(
                 this.documento,
                 txtMedico.getText(),
