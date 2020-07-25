@@ -41,10 +41,14 @@ public class RepositorioDePacientesEnMemoria extends RepositorioDePacientes {
 
     @Override
     public void eliminar(String id) {
+        Paciente pacienteEncontrado=  null;
         for (Paciente paciente : this.data) {
             if (paciente.getDocumento().equals(id)) {
-                this.data.remove(paciente);
+                pacienteEncontrado = paciente;
             }
+        }
+        if (pacienteEncontrado != null) {
+            this.data.remove(pacienteEncontrado);
         }
     }
 

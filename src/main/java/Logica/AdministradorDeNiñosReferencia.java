@@ -3,35 +3,29 @@ package Logica;
 import Dominio.Paciente;
 import Dominio.RepositorioDePacientes;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
-    
+
     private final RepositorioDePacientes repositorio;
-    
+
     public AdministradorDeNiñosReferencia(RepositorioDePacientes repositorio) {
         this.repositorio = repositorio;
     }
-    
+
     @Override
     public ArrayList<ResumenNiño> listar() {
         ArrayList<ResumenNiño> respuesta = new ArrayList<>();
-        this.repositorio.listar().forEach(niño -> {
-            Instant now = Instant.now();
-            Instant ago = niño.getFechaNacimiento();
-            
-            long edad = ChronoUnit.YEARS.between(
-                    ago.atZone(ZoneId.systemDefault()),
-                    now.atZone(ZoneId.systemDefault()));
-            
-            respuesta.add(new ResumenNiño(niño.getDocumento(), niño.getNombre(), niño.getDocumento(), String.valueOf(edad), niño.getServicioMedico()));
+        this.repositorio.listar().forEach(paciente -> {
+            respuesta.add(new ResumenNiño(paciente.getDocumento(), paciente.getNombre(), paciente.getDocumento(), paciente.getEdad(), paciente.getServicioMedico()));
         });
-        
+
         return respuesta;
     }
-    
+
     @Override
     public Niño obtener(String id) throws NiñoNoExistenteException {
         try {
@@ -49,33 +43,39 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
             throw new NiñoNoExistenteException();
         }
     }
-    
+
     @Override
     public void registrar(Niño niño) {
-        /*LocalDate date = LocalDate.parse(niño.getFechaDeNacimiento(), DateTimeFormatter.ofPattern("uuuu-MMM-dd"));
-        Instant instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant();*/
-        this.repositorio.agregar(new Paciente(niño.getNombre(),
-                niño.getDocumento(), Instant.now(),
-                niño.getServicioMedico(),
-                niño.getMedicoCabezera(),
-                niño.getFonasa()
-        ));
+        LocalDate date = LocalDate.parse(niño.getFechaDeNacimiento(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        Instant instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant();
+        this.repositorio.agregar(
+                new Paciente(
+                        niño.getNombre(),
+                        niño.getDocumento(), instant,
+                        niño.getServicioMedico(),
+                        niño.getMedicoCabezera(),
+                        niño.getFonasa()
+                ));
     }
-    
+
     @Override
     public void eliminar(String id) {
         this.repositorio.eliminar(id);
     }
-    
+
     @Override
     public void modificar(Niño niño) {
+        LocalDate date = LocalDate.parse(niño.getFechaDeNacimiento(), DateTimeFormatter.ofPattern("uuuu-MM-dd"));
+        Instant instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant();
         this.repositorio.eliminar(niño.getDocumento());
-        this.repositorio.agregar(new Paciente(niño.getNombre(),
-                niño.getDocumento(), Instant.now(),
-                niño.getServicioMedico(),
-                niño.getMedicoCabezera(),
-                niño.getFonasa()
-        ));
+        this.repositorio.agregar(
+                new Paciente(
+                        niño.getNombre(),
+                        niño.getDocumento(), instant,
+                        niño.getServicioMedico(),
+                        niño.getMedicoCabezera(),
+                        niño.getFonasa()
+                ));
     }
-    
+
 }

@@ -1,6 +1,8 @@
 package Dominio;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class Paciente {
@@ -63,6 +65,16 @@ public class Paciente {
 
     public boolean isTieneFonasa() {
         return tieneFonasa;
+    }
+
+    public String getEdad() {
+        Instant now = Instant.now();
+        Instant ago = this.getFechaNacimiento();
+
+        long edad = ChronoUnit.YEARS.between(
+                ago.atZone(ZoneId.systemDefault()),
+                now.atZone(ZoneId.systemDefault()));
+        return String.valueOf(edad);
     }
 
 }

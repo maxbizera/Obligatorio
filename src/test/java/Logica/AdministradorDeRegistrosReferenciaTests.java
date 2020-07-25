@@ -15,7 +15,7 @@ public class AdministradorDeRegistrosReferenciaTests {
     public void deberiaRetornarElNumeroDeConsultasAntesDeUnaDeterminadaFecha() {
         //Arrange
         int respuestaEsperada = 1;
-        Dominio.Registro consulta = new Dominio.Registro("consulta", new Date(System.currentTimeMillis() - 600000l));
+        Dominio.Registro consulta = new Dominio.Registro("consulta", new Date(System.currentTimeMillis() - 600000l),"");
         ArrayList< Dominio.Registro> consultas
                 = new ArrayList<>();
         consultas.add(consulta);
@@ -36,7 +36,7 @@ public class AdministradorDeRegistrosReferenciaTests {
         //Arrange
         int respuestaEsperada = 0;
         Date fechaFutura = new Date(System.currentTimeMillis() + 600000l);
-        Dominio.Registro consulta = new Dominio.Registro("consulta", fechaFutura);
+        Dominio.Registro consulta = new Dominio.Registro("consulta", fechaFutura,"");
         ArrayList< Dominio.Registro> consultas
                 = new ArrayList<>();
         consultas.add(consulta);
