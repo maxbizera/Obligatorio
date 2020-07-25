@@ -88,15 +88,27 @@ public class Paciente {
     }
 
     public void eliminarConsulta(Consulta consulta) {
-        this.getConsultas().remove(consulta);
+        for (Consulta consultaRepo : this.consultas) {
+            if (consultaRepo.getFecha().equals(consulta.getFecha())) {
+                this.consultas.remove(consultaRepo);
+            }
+        }
     }
 
     public void eliminarControl(Control control) {
-        this.getControles().remove(control);
+        for (Control controlRepo : this.controles) {
+            if (controlRepo.getPeso().equals(control.getPeso())) {
+                this.controles.remove(controlRepo);
+            }
+        }
     }
 
     public void eliminarVacuna(Vacuna vacuna) {
-        this.getVacunas().remove(vacuna);
+        for (Vacuna vacunaRepo : this.vacunas) {
+            if (vacunaRepo.getFecha().equals(vacuna.getFecha())) {
+                this.vacunas.remove(vacunaRepo);
+            }
+        }
     }
 
 }
