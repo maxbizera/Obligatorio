@@ -208,7 +208,8 @@ public class ListaNiños extends javax.swing.JFrame {
         int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este niño?");
         if (input == 0) {
             administradorDeNiños.eliminar(this.documentSelected);
-            this.recargarLista();
+            new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_jMenuItemEliminarNiñoActionPerformed
 
