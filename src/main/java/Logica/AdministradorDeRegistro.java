@@ -1,8 +1,11 @@
 package Logica;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class AdministradorDeRegistro {
+
+    public abstract ArrayList<ResumenRegistro> listar(String documento);
 
     public abstract int contarConsultasHastaFecha(Date fecha);
 
