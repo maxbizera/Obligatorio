@@ -33,10 +33,10 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
             Niño niño = new Niño(
                     paciente.getDocumento(),
                     paciente.getNombre(),
-                    paciente.getFechaNacimiento().toString(),
+                    DateTimeFormatter.ISO_INSTANT.format(paciente.getFechaNacimiento()),
                     paciente.getServicioMedico(),
                     paciente.getMedicoCabecera(),
-                    true
+                    paciente.isTieneFonasa()
             );
             return niño;
         } catch (Dominio.PacienteNoEncontradoException e) {
@@ -46,7 +46,7 @@ public class AdministradorDeNiñosReferencia extends AdministradorDeNiños {
 
     @Override
     public void registrar(Niño niño) {
-        LocalDate date = LocalDate.parse(niño.getFechaDeNacimiento(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate date = LocalDate.parse(niño.getFechaDeNacimiento(), DateTimeFormatter.ofPattern("uuuu-MM-dd"));
         Instant instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant();
         this.repositorio.agregar(
                 new Paciente(

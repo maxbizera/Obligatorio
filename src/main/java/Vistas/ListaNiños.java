@@ -42,14 +42,12 @@ public class ListaNiños extends javax.swing.JFrame {
 
         int index = 0;
         for (ResumenNiño niño : listadoDeNiños) {
-            System.out.println("Vistas.ListaNiños.recargarLista()" + niño.getNombre());
             this.niños[index][0] = niño.getNombre();
             this.niños[index][1] = niño.getDocumento();
             this.niños[index][2] = niño.getServicioDeSalud();
             this.niños[index][3] = niño.getEdad();
             ++index;
         }
-        System.out.println("==============");
 
     }
 

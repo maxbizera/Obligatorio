@@ -42,8 +42,7 @@ public class Detalle extends javax.swing.JFrame {
         this.txtServicioMedico.setText(niño.getServicioMedico());
         this.txtNacimientoAño.setSelectedItem(niño.getFechaDeNacimiento().split("-")[0]);
         this.txtNacimientoMes.setSelectedItem(niño.getFechaDeNacimiento().split("-")[1]);
-        this.txtNacimientoDia.setSelectedItem(niño.getFechaDeNacimiento().split("-")[2]);
-        System.out.println("Vistas.Detalle.<init>() " + niño.getFonasa());
+        this.txtNacimientoDia.setSelectedItem(niño.getFechaDeNacimiento().split("-")[2].split("T")[0]);
 
         setTitle("Detalle del niño " + niño.getDocumento());
     }
