@@ -13,34 +13,20 @@ public class Paciente {
     private final String servicioMedico;
     private final String medicoCabecera;
     private final boolean tieneFonasa;
-    private final ArrayList<Registro> registros;
+    private final ArrayList<Consulta> consultas;
+    private final ArrayList<Vacuna> vacunas;
+    private final ArrayList<Control> controles;
 
     public Paciente(String nombre, String documento, Instant fechaDeNacimiento, String servicioMedico, String medicoCabecera, boolean tieneFonasa) {
-        this.registros = new ArrayList<>();
         this.nombre = nombre;
         this.fechaNacimiento = fechaDeNacimiento;
         this.servicioMedico = servicioMedico;
         this.medicoCabecera = medicoCabecera;
         this.tieneFonasa = tieneFonasa;
         this.documento = documento;
-    }
-
-    public Paciente(ArrayList<Registro> consultas, String nombre, String documento, Instant fechaDeNacimiento, String servicioMedico, String medicoCabecera, boolean tieneFonasa) {
-        this.registros = consultas;
-        this.nombre = nombre;
-        this.fechaNacimiento = fechaDeNacimiento;
-        this.servicioMedico = servicioMedico;
-        this.medicoCabecera = medicoCabecera;
-        this.tieneFonasa = tieneFonasa;
-        this.documento = documento;
-    }
-
-    public ArrayList<Registro> getRegistros() {
-        return this.registros;
-    }
-
-    public void agregarRegistro(Registro registro) {
-        this.registros.add(registro);
+        this.consultas = new ArrayList<>();
+        this.vacunas = new ArrayList<>();
+        this.controles = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -75,6 +61,42 @@ public class Paciente {
                 ago.atZone(ZoneId.systemDefault()),
                 now.atZone(ZoneId.systemDefault()));
         return String.valueOf(edad);
+    }
+
+    public ArrayList<Consulta> getConsultas() {
+        return consultas;
+    }
+
+    public ArrayList<Vacuna> getVacunas() {
+        return vacunas;
+    }
+
+    public ArrayList<Control> getControles() {
+        return controles;
+    }
+
+    public void agregarConsulta(Consulta consulta) {
+        this.getConsultas().add(consulta);
+    }
+
+    public void agregarControl(Control control) {
+        this.getControles().add(control);
+    }
+
+    public void agregarVacuna(Vacuna vacuna) {
+        this.getVacunas().add(vacuna);
+    }
+
+    public void eliminarConsulta(Consulta consulta) {
+        this.getConsultas().remove(consulta);
+    }
+
+    public void eliminarControl(Control control) {
+        this.getControles().remove(control);
+    }
+
+    public void eliminarVacuna(Vacuna vacuna) {
+        this.getVacunas().remove(vacuna);
     }
 
 }
