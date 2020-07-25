@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -108,20 +109,24 @@ public class Detalle extends javax.swing.JFrame {
         listarControles.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
             ControlSelected = new ResumenControl(
                     documento,
-                    new Date(listarControles.getValueAt(listarControles.getSelectedRow(), 2).toString()),
+                    (Date) listarControles.getValueAt(listarControles.getSelectedRow(), 2),
                     listarControles.getValueAt(listarControles.getSelectedRow(), 0).toString(),
                     listarControles.getValueAt(listarControles.getSelectedRow(), 1).toString()
             );
             btnEliminarControl.setEnabled(true);
         });
-        listarVacunas.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
-            VacunaSelected = new ResumenVacuna(
-                    documento,
-                    new Date(listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 3).toString()),
-                    listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 0).toString(),
-                    listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 1).toString(), (boolean) listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 2)
-            );
-            btnEliminarVacuna.setEnabled(true);
+        listarVacunas.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                VacunaSelected = new ResumenVacuna(
+                        documento,
+                        (Date) listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 3),
+                        listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 0).toString(),
+                        listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 1).toString(),
+                        (boolean) listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 2)
+                );
+                btnEliminarVacuna.setEnabled(true);
+            }
         });
         
         this.txtDocumentoNiño.setText(niño.getDocumento());
