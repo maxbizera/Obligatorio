@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author maxbi
  */
-public class AgregarControl extends javax.swing.JFrame {
+public class AgregarConsulta extends javax.swing.JFrame {
 
     private AdministradorDeNiños administradorDeNiños;
     private final String documento;
@@ -26,7 +26,7 @@ public class AgregarControl extends javax.swing.JFrame {
      * Creates new form AgregarNiño
      */
 
-    AgregarControl(AdministradorDeNiños administradorDeNiños, String documento) {
+    AgregarConsulta(AdministradorDeNiños administradorDeNiños, String documento) {
         this.administradorDeNiños = administradorDeNiños;
         this.documento = documento;
         
@@ -48,11 +48,13 @@ public class AgregarControl extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtPeso = new javax.swing.JTextField();
-        txtAltura = new javax.swing.JTextField();
+        txtMedico = new javax.swing.JTextField();
+        txtDiagnostico = new javax.swing.JTextField();
+        txtRecomendacion = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Agregar nuevo control");
+        setTitle("Agregar nuevo vacuna");
 
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -68,13 +70,11 @@ public class AgregarControl extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Peso");
+        jLabel4.setText("Medico");
 
-        jLabel5.setText("Altura");
+        jLabel5.setText("Diagnostico");
 
-        txtPeso.setText("0");
-
-        txtAltura.setText("0");
+        jLabel6.setText("Recomendación");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,18 +83,20 @@ public class AgregarControl extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(50, 50, 50)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPeso)
-                            .addComponent(txtAltura))))
+                            .addComponent(txtMedico)
+                            .addComponent(txtDiagnostico)
+                            .addComponent(txtRecomendacion, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -105,12 +107,16 @@ public class AgregarControl extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel4))
-                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRecomendacion, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -125,17 +131,17 @@ public class AgregarControl extends javax.swing.JFrame {
             new Detalle(administradorDeNiños, this.documento).setVisible(true);
             dispose();
         } catch (NiñoNoExistenteException ex) {
-            Logger.getLogger(AgregarControl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgregarConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, "El control ha sido agregado correctamente.");
+        JOptionPane.showMessageDialog(null, "La vacuna fue agregado correctamente.");
         try {
             new Detalle(administradorDeNiños, this.documento).setVisible(true);
             dispose();
         } catch (NiñoNoExistenteException ex) {
-            Logger.getLogger(AgregarControl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgregarConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -144,7 +150,9 @@ public class AgregarControl extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField txtAltura;
-    private javax.swing.JTextField txtPeso;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtDiagnostico;
+    private javax.swing.JTextField txtMedico;
+    private javax.swing.JTextField txtRecomendacion;
     // End of variables declaration//GEN-END:variables
 }

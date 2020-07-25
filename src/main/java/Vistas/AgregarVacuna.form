@@ -34,7 +34,6 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -43,13 +42,6 @@
                           <Group type="102" attributes="0">
                               <Component id="txtObligatoria" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtFechaDia" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtFechaMes" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtFechaAño" min="-2" pref="124" max="-2" attributes="0"/>
                           </Group>
                           <Component id="txtNombre" max="32767" attributes="0"/>
                           <Component id="txtDosis" max="32767" attributes="0"/>
@@ -66,21 +58,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtFechaDia" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="txtFechaMes" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txtFechaAño" min="-2" pref="29" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="txtNombre" min="-2" pref="27" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="txtNombre" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -89,7 +70,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="txtObligatoria" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jButton2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
@@ -115,47 +96,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Fecha"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="txtFechaDia">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtFechaDia.addItem(&quot;D&#xed;a&quot;);&#xa;for (int i = 1; i&lt;=31; ++i) {&#xa;    txtFechaDia.addItem(&quot;&quot;+i+&quot;&quot;);&#xa;}"/>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="txtFechaMes">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="13">
-            <StringItem index="0" value="Mes"/>
-            <StringItem index="1" value="Enero"/>
-            <StringItem index="2" value="Febrero"/>
-            <StringItem index="3" value="Marzo"/>
-            <StringItem index="4" value="Abril"/>
-            <StringItem index="5" value="Mayo"/>
-            <StringItem index="6" value="Junio"/>
-            <StringItem index="7" value="Julio"/>
-            <StringItem index="8" value="Agosto"/>
-            <StringItem index="9" value="Septiembre"/>
-            <StringItem index="10" value="Octubre"/>
-            <StringItem index="11" value="Noviembre"/>
-            <StringItem index="12" value="Diciembre"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="txtFechaA&#xf1;o">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtFechaA&#xf1;o.addItem(&quot;A&#xf1;o&quot;);&#xa;for (int i = 2020; i&gt;=1990; --i) {&#xa;    txtFechaA&#xf1;o.addItem(&quot;&quot;+i+&quot;&quot;);&#xa;}"/>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
