@@ -2,6 +2,8 @@ package Despliegue;
 
 import Dominio.RepositorioDePacientes;
 import Dominio.RepositorioDePacientesEnMemoria;
+import Logica.AdministradorDeConsultas;
+import Logica.AdministradorDeConsultasReferencia;
 import Logica.AdministradorDeNiños;
 import Logica.AdministradorDeNiñosReferencia;
 import Vistas.ListaNiños;
@@ -13,7 +15,9 @@ public class main {
 
         RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria();
         AdministradorDeNiños administradorDeNiño = new AdministradorDeNiñosReferencia(repositorio);
-        new ListaNiños(administradorDeNiño).setVisible(true);
+
+        AdministradorDeConsultas administradorDeConsultas = new AdministradorDeConsultasReferencia(repositorio);
+        new ListaNiños(administradorDeNiño, administradorDeConsultas).setVisible(true);
 
     }
 

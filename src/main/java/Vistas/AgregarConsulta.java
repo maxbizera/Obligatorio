@@ -5,10 +5,13 @@
  */
 package Vistas;
 
+import Logica.AdministradorDeConsultas;
 import Logica.AdministradorDeNiños;
 import Logica.NiñoNoExistenteException;
+import Logica.ResumenConsulta;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,13 +24,15 @@ public class AgregarConsulta extends javax.swing.JFrame {
 
     private AdministradorDeNiños administradorDeNiños;
     private final String documento;
+    private final AdministradorDeConsultas administradorDeConsultas;
     
     /**
      * Creates new form AgregarNiño
      */
 
-    AgregarConsulta(AdministradorDeNiños administradorDeNiños, String documento) {
+    AgregarConsulta(AdministradorDeNiños administradorDeNiños, AdministradorDeConsultas administradorDeConsultas,String documento) {
         this.administradorDeNiños = administradorDeNiños;
+        this.administradorDeConsultas = administradorDeConsultas;
         this.documento = documento;
         
         initComponents();
@@ -128,7 +133,7 @@ public class AgregarConsulta extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        try {
-            new Detalle(administradorDeNiños, this.documento).setVisible(true);
+            new Detalle(administradorDeNiños, administradorDeConsultas, this.documento).setVisible(true);
             dispose();
         } catch (NiñoNoExistenteException ex) {
             Logger.getLogger(AgregarConsulta.class.getName()).log(Level.SEVERE, null, ex);
@@ -137,8 +142,15 @@ public class AgregarConsulta extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JOptionPane.showMessageDialog(null, "La vacuna fue agregado correctamente.");
+        administradorDeConsultas.agregar(new ResumenConsulta(
+                this.documento,
+                txtMedico.getText(),
+                txtDiagnostico.getText(),
+                new Date(),
+                txtRecomendacion.getText()
+        ));
         try {
-            new Detalle(administradorDeNiños, this.documento).setVisible(true);
+            new Detalle(administradorDeNiños, administradorDeConsultas, this.documento).setVisible(true);
             dispose();
         } catch (NiñoNoExistenteException ex) {
             Logger.getLogger(AgregarConsulta.class.getName()).log(Level.SEVERE, null, ex);

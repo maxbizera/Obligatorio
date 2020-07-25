@@ -1,5 +1,6 @@
 package Vistas;
 
+import Logica.AdministradorDeConsultas;
 import Logica.AdministradorDeNiños;
 import Logica.NiñoNoExistenteException;
 import Logica.ResumenNiño;
@@ -16,11 +17,13 @@ public class ListaNiños extends javax.swing.JFrame {
     private String documentSelected;
 
     private final AdministradorDeNiños administradorDeNiños;
+    private final AdministradorDeConsultas administradorDeConsultas;
     private Object[][] niños;
 
-    public ListaNiños(AdministradorDeNiños administradorDeNiño) {
+    public ListaNiños(AdministradorDeNiños administradorDeNiño, AdministradorDeConsultas administradorDeConsultas) {
 
         this.administradorDeNiños = administradorDeNiño;
+        this.administradorDeConsultas = administradorDeConsultas;
 
         recargarLista();
 
@@ -209,7 +212,7 @@ public class ListaNiños extends javax.swing.JFrame {
 
     private void jMenuItemDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDetalleActionPerformed
         try {
-            new Detalle(administradorDeNiños, this.documentSelected).setVisible(true);
+            new Detalle(administradorDeNiños, administradorDeConsultas, this.documentSelected).setVisible(true);
             setVisible(false);
         } catch (NiñoNoExistenteException ex) {
             Logger.getLogger(ListaNiños.class.getName()).log(Level.SEVERE, null, ex);

@@ -5,6 +5,7 @@
  */
 package Vistas;
 
+import Logica.AdministradorDeConsultas;
 import Logica.AdministradorDeNiños;
 import Logica.Niño;
 import Logica.NiñoNoExistenteException;
@@ -29,12 +30,14 @@ public class Detalle extends javax.swing.JFrame {
     private Object[][] consultas;
     private Object[][] controles;
     private Object[][] vacunas;
+    private final AdministradorDeConsultas administradorDeConsultas;
 
     /**
      * Creates new form AgregarNiño
      */
-    Detalle(AdministradorDeNiños administradorDeNiños, String document) throws NiñoNoExistenteException {
+    Detalle(AdministradorDeNiños administradorDeNiños, AdministradorDeConsultas administradorDeConsultas, String document) throws NiñoNoExistenteException {
         this.administradorDeNiños = administradorDeNiños;
+        this.administradorDeConsultas = administradorDeConsultas;
         this.documento = document;
 
         initComponents();
@@ -437,7 +440,7 @@ public class Detalle extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new ListaNiños(administradorDeNiños).setVisible(true);
+        new ListaNiños(administradorDeNiños, administradorDeConsultas).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -454,13 +457,13 @@ public class Detalle extends javax.swing.JFrame {
         int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este niño?");
         if (input == 0) {
             administradorDeNiños.eliminar(this.documento);
-            new ListaNiños(administradorDeNiños).setVisible(true);
+            new ListaNiños(administradorDeNiños, administradorDeConsultas).setVisible(true);
             setVisible(false);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new AgregarConsulta(administradorDeNiños, this.documento).setVisible(true);
+        new AgregarConsulta(administradorDeNiños, administradorDeConsultas, this.documento).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -468,7 +471,7 @@ public class Detalle extends javax.swing.JFrame {
         int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este consulta?");
         if (input == 0) {
             //administradorDeNiños.eliminar(this.idConsultaSelected);
-            new ListaNiños(administradorDeNiños).setVisible(true);
+            new ListaNiños(administradorDeNiños, administradorDeConsultas).setVisible(true);
             setVisible(false);
         }
     }//GEN-LAST:event_btnEliminarConsultaActionPerformed
