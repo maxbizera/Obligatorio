@@ -1,3 +1,4 @@
+/*
 package Dominio;
 
 import java.time.Instant;
@@ -66,3 +67,4 @@ public class RepositorioDePacientesEnMemoriaTest {
         assertEquals(resultadoEsperado, repositorio.listar().size());
     }
 }
+*/
