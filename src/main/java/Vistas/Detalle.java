@@ -18,6 +18,7 @@ import Logica.ResumenVacuna;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -31,15 +32,15 @@ public class Detalle extends javax.swing.JFrame {
 
     private final AdministradorDeNiños administradorDeNiños;
     private final String documento;
-    private String idControlSelected;
-    private String idConsultaSelected;
-    private String idVacunaSelected;
     private Object[][] consultas;
     private Object[][] controles;
     private Object[][] vacunas;
     private final AdministradorDeConsultas administradorDeConsultas;
     private final AdministradorDeControl administradorDeControles;
     private final AdministradorDeVacunas administradorDeVacunas;
+    private ResumenConsulta ConsultaSelected;
+    private ResumenControl ControlSelected;
+    private ResumenVacuna VacunaSelected;
 
     /**
      * Creates new form AgregarNiño
@@ -56,34 +57,37 @@ public class Detalle extends javax.swing.JFrame {
         setTitle("Detalle del niño " + niño.getDocumento());
         
         ArrayList<ResumenConsulta> listadoDeConsultas = administradorDeConsultas.listar(documento);
-        this.consultas = new Object[listadoDeConsultas.size()][3];
+        this.consultas = new Object[listadoDeConsultas.size()][4];
 
         int index1 = 0;
         for (ResumenConsulta consulta : listadoDeConsultas) {
             this.consultas[index1][0] = consulta.medico;
             this.consultas[index1][1] = consulta.diagnostico;
             this.consultas[index1][2] = consulta.recomendaciones;
+            this.consultas[index1][3] = consulta.fechaDeRegistro;
             ++index1;
         }
         
         ArrayList<ResumenControl> listadoDeControles = administradorDeControles.listar(documento);
-        this.controles = new Object[listadoDeControles.size()][2];
+        this.controles = new Object[listadoDeControles.size()][3];
 
         int index2 = 0;
         for (ResumenControl control : listadoDeControles) {
             this.controles[index2][0] = control.peso;
             this.controles[index2][1] = control.altura;
+            this.controles[index2][2] = control.fechaDeRegistro;
             ++index2;
         }
         
         ArrayList<ResumenVacuna> listadoDeVacunas = administradorDeVacunas.listar(documento);
-        this.vacunas = new Object[listadoDeVacunas.size()][3];
+        this.vacunas = new Object[listadoDeVacunas.size()][4];
 
         int index3 = 0;
         for (ResumenVacuna vacuna : listadoDeVacunas) {
             this.vacunas[index3][0] = vacuna.nombre;
             this.vacunas[index3][1] = vacuna.dosis;
             this.vacunas[index3][2] = vacuna.obligatoria;
+            this.vacunas[index3][3] = vacuna.fechaDeRegistro;
             ++index3;
         }
                 
@@ -92,15 +96,31 @@ public class Detalle extends javax.swing.JFrame {
         setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
 
         listarConsultas.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
-            idConsultaSelected = listarConsultas.getValueAt(listarConsultas.getSelectedRow(), 1).toString();
+            ConsultaSelected = new ResumenConsulta(
+                    documento,
+                    listarConsultas.getValueAt(listarConsultas.getSelectedRow(), 0).toString(),
+                    listarConsultas.getValueAt(listarConsultas.getSelectedRow(), 1).toString(),
+                    (Date) listarConsultas.getValueAt(listarConsultas.getSelectedRow(), 3),
+                    listarConsultas.getValueAt(listarConsultas.getSelectedRow(), 2).toString()
+            );
             btnEliminarConsulta.setEnabled(true);
         });
         listarControles.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
-            idControlSelected = listarControles.getValueAt(listarControles.getSelectedRow(), 1).toString();
+            ControlSelected = new ResumenControl(
+                    documento,
+                    new Date(listarControles.getValueAt(listarControles.getSelectedRow(), 2).toString()),
+                    listarControles.getValueAt(listarControles.getSelectedRow(), 0).toString(),
+                    listarControles.getValueAt(listarControles.getSelectedRow(), 1).toString()
+            );
             btnEliminarControl.setEnabled(true);
         });
         listarVacunas.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
-            idVacunaSelected = listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 1).toString();
+            VacunaSelected = new ResumenVacuna(
+                    documento,
+                    new Date(listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 3).toString()),
+                    listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 0).toString(),
+                    listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 1).toString(), (boolean) listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 2)
+            );
             btnEliminarVacuna.setEnabled(true);
         });
         
@@ -221,14 +241,14 @@ public class Detalle extends javax.swing.JFrame {
         listarConsultas.setModel(new javax.swing.table.DefaultTableModel(
             this.consultas,
             new String [] {
-                "Medico", "Diagnostico", "Recomendacion"
+                "Medico", "Diagnostico", "Recomendacion", "Fecha"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.util.Date.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -246,14 +266,14 @@ public class Detalle extends javax.swing.JFrame {
         listarControles.setModel(new javax.swing.table.DefaultTableModel(
             this.controles,
             new String [] {
-                "Peso", "Altura"
+                "Peso", "Altura", "Fecha"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.util.Date.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -271,14 +291,14 @@ public class Detalle extends javax.swing.JFrame {
         listarVacunas.setModel(new javax.swing.table.DefaultTableModel(
             this.vacunas,
             new String [] {
-                "Nombre", "Dosis", "Obligatorio"
+                "Nombre", "Dosis", "Obligatorio", "Fecha"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.util.Date.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false
+                false, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -489,18 +509,26 @@ public class Detalle extends javax.swing.JFrame {
     private void btnEliminarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarConsultaActionPerformed
         int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este consulta?");
         if (input == 0) {
-            //administradorDeNiños.eliminar(this.idConsultaSelected);
-            new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
-            setVisible(false);
+            try {
+                administradorDeConsultas.eliminar(this.ConsultaSelected);
+                new Detalle(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, documento).setVisible(true);
+                setVisible(false);
+            } catch (NiñoNoExistenteException ex) {
+                Logger.getLogger(Detalle.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnEliminarConsultaActionPerformed
 
     private void btnEliminarControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarControlActionPerformed
         int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este control?");
         if (input == 0) {
-            //administradorDeNiños.eliminar(this.idControlSelected);
-            new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
-            setVisible(false);
+            try {
+                administradorDeControles.eliminar(this.ControlSelected);
+                new Detalle(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, documento).setVisible(true);
+                setVisible(false);
+            } catch (NiñoNoExistenteException ex) {
+                Logger.getLogger(Detalle.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnEliminarControlActionPerformed
 
@@ -512,9 +540,13 @@ public class Detalle extends javax.swing.JFrame {
     private void btnEliminarVacunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVacunaActionPerformed
         int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar esta vacuna?");
         if (input == 0) {
-            //administradorDeNiños.eliminar(this.idVacunaSelected);
-            new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
-            setVisible(false);
+            try {
+                administradorDeVacunas.eliminar(this.VacunaSelected);
+                new Detalle(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, documento).setVisible(true);
+                setVisible(false);
+            } catch (NiñoNoExistenteException ex) {
+                Logger.getLogger(Detalle.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnEliminarVacunaActionPerformed
 
