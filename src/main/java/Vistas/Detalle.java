@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
 
 /**
  *
@@ -22,6 +23,9 @@ public class Detalle extends javax.swing.JFrame {
 
     private final AdministradorDeNiños administradorDeNiños;
     private final String documento;
+    private String idControlSelected;
+    private String idConsultaSelected;
+    private String idVacunaSelected;
     private Object[][] consultas;
     private Object[][] controles;
     private Object[][] vacunas;
@@ -74,6 +78,19 @@ public class Detalle extends javax.swing.JFrame {
             this.niños[index][3] = niño.getEdad();
             ++index;
         }*/
+        
+        listarConsultas.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            idConsultaSelected = listarConsultas.getValueAt(listarConsultas.getSelectedRow(), 1).toString();
+            btnEliminarConsulta.setEnabled(true);
+        });
+        listarControles.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            idControlSelected = listarControles.getValueAt(listarControles.getSelectedRow(), 1).toString();
+            btnEliminarControl.setEnabled(true);
+        });
+        listarVacunas.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            idVacunaSelected = listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 1).toString();
+            btnEliminarVacuna.setEnabled(true);
+        });
     }
 
     /**
@@ -110,6 +127,12 @@ public class Detalle extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         listarVacunas = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        btnEliminarConsulta = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        btnEliminarControl = new javax.swing.JButton();
+        btnEliminarVacuna = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalle del niño");
@@ -246,6 +269,46 @@ public class Detalle extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(listarVacunas);
 
+        jButton1.setText("Agregar consulta");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnEliminarConsulta.setText("Eliminar consulta");
+        btnEliminarConsulta.setEnabled(false);
+        btnEliminarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarConsultaActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Agregar control");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        btnEliminarControl.setText("Eliminar control");
+        btnEliminarControl.setEnabled(false);
+        btnEliminarControl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarControlActionPerformed(evt);
+            }
+        });
+
+        btnEliminarVacuna.setText("Eliminar vacuna");
+        btnEliminarVacuna.setEnabled(false);
+        btnEliminarVacuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarVacunaActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Agregar vacuna");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -293,11 +356,23 @@ public class Detalle extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEliminarVacuna)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEliminarConsulta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEliminarControl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -323,15 +398,26 @@ public class Detalle extends javax.swing.JFrame {
                     .addComponent(txtMedicoCabezera, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jButton1)
+                    .addComponent(btnEliminarConsulta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton5)
+                        .addComponent(btnEliminarControl)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton6)
+                        .addComponent(btnEliminarVacuna)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -368,10 +454,51 @@ public class Detalle extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnEliminarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarConsultaActionPerformed
+        int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este consulta?");
+        if (input == 0) {
+            //administradorDeNiños.eliminar(this.idConsultaSelected);
+            new ListaNiños(administradorDeNiños).setVisible(true);
+            setVisible(false);
+        }
+    }//GEN-LAST:event_btnEliminarConsultaActionPerformed
+
+    private void btnEliminarControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarControlActionPerformed
+        int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este control?");
+        if (input == 0) {
+            //administradorDeNiños.eliminar(this.idControlSelected);
+            new ListaNiños(administradorDeNiños).setVisible(true);
+            setVisible(false);
+        }
+    }//GEN-LAST:event_btnEliminarControlActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnEliminarVacunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVacunaActionPerformed
+        int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar esta vacuna?");
+        if (input == 0) {
+            //administradorDeNiños.eliminar(this.idVacunaSelected);
+            new ListaNiños(administradorDeNiños).setVisible(true);
+            setVisible(false);
+        }
+    }//GEN-LAST:event_btnEliminarVacunaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminarConsulta;
+    private javax.swing.JButton btnEliminarControl;
+    private javax.swing.JButton btnEliminarVacuna;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
