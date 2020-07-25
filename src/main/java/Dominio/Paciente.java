@@ -76,15 +76,15 @@ public class Paciente {
     }
 
     public void agregarConsulta(Consulta consulta) {
-        this.getConsultas().add(consulta);
+        this.consultas.add(consulta);
     }
 
     public void agregarControl(Control control) {
-        this.getControles().add(control);
+        this.controles.add(control);
     }
 
     public void agregarVacuna(Vacuna vacuna) {
-        this.getVacunas().add(vacuna);
+        this.vacunas.add(vacuna);
     }
 
     public void eliminarConsulta(Consulta consulta) {
