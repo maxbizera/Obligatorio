@@ -80,7 +80,7 @@ public class AgregarNiño extends javax.swing.JFrame {
 
         txtNacimientoDia.addItem("Día");
         for (int i = 1; i<=31; ++i) {
-            txtNacimientoDia.addItem(""+i+"");
+            txtNacimientoDia.addItem((i<10 ? "0" : "") + ""+i+"");
         }
 
         txtNacimientoMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Més", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));

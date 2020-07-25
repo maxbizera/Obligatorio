@@ -152,7 +152,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtNacimientoDia.addItem(&quot;D&#xed;a&quot;);&#xa;for (int i = 1; i&lt;=31; ++i) {&#xa;    txtNacimientoDia.addItem(&quot;&quot;+i+&quot;&quot;);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtNacimientoDia.addItem(&quot;D&#xed;a&quot;);&#xa;for (int i = 1; i&lt;=31; ++i) {&#xa;    txtNacimientoDia.addItem((i&lt;10 ? &quot;0&quot; : &quot;&quot;) + &quot;&quot;+i+&quot;&quot;);&#xa;}"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>

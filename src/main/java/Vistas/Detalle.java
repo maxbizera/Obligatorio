@@ -96,7 +96,7 @@ public class Detalle extends javax.swing.JFrame {
 
         txtNacimientoDia.addItem("Día");
         for (int i = 1; i<=31; ++i) {
-            txtNacimientoDia.addItem(""+i+"");
+            txtNacimientoDia.addItem((i<10 ? "0" : "") + ""+i+"");
         }
         txtNacimientoDia.setEnabled(false);
 
