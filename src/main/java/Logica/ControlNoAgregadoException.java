@@ -5,10 +5,6 @@
  */
 package Logica;
 
-/**
- *
- * @author gcarrillo
- */
 public class ControlNoAgregadoException extends Exception {
     
 }

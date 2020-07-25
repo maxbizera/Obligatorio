@@ -29,7 +29,6 @@ public class main {
             RepositorioDePacientes repositorio = new RepositorioDePacientesEnMemoria(new ArrayList<Paciente>() {
 
                 {
-                    add(new Paciente("Guillermo Carrillo", "V18942891", Instant.now(), "HCC", "Krivoy", false));
                     add(new Paciente("Maximiliano Bizera", "V1231231", Instant.now(), "HCC", "Krivoy", false));
 
                 }

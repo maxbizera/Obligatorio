@@ -5,10 +5,6 @@
  */
 package Logica;
 
-/**
- *
- * @author gcarrillo
- */
 class VacunaNoAgregadaException extends Exception {
     
 }

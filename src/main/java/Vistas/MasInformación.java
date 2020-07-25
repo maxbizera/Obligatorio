@@ -46,7 +46,7 @@ public class MasInformación extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("El desarrollo de esta aplicación esta pensado\npara facilitar el control de niños/as y sus \nconsultas médicas.\n\nProyecto Obligatorio de Programación del\nprimer semestre del año 2020.\n\nDesarrolladores:\n  - @");
+        jTextArea1.setText("El desarrollo de esta aplicación esta pensado\npara facilitar el control de niños/as y sus \nconsultas médicas.\n\nProyecto Obligatorio de Programación del\nprimer semestre del año 2020.\n\nDesarrolladores:\n  - @Max Bizera\n    4.687.746.7\n    <max.bizzera@gmail.com>");
         jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -63,7 +63,7 @@ public class MasInformación extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
