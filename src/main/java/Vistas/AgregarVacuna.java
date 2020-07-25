@@ -6,8 +6,11 @@
 package Vistas;
 
 import Logica.AdministradorDeNiños;
+import Logica.NiñoNoExistenteException;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -155,14 +158,22 @@ public class AgregarVacuna extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       new ListaControlesDeNiño(administradorDeNiños, this.documento).setVisible(true);
-        dispose();
+       try {
+            new Detalle(administradorDeNiños, this.documento).setVisible(true);
+            dispose();
+        } catch (NiñoNoExistenteException ex) {
+            Logger.getLogger(AgregarVacuna.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JOptionPane.showMessageDialog(null, "La vacuna fue agregado correctamente.");
-        new ListaControlesDeNiño(administradorDeNiños, this.documento).setVisible(true);
-        dispose();
+        try {
+            new Detalle(administradorDeNiños, this.documento).setVisible(true);
+            dispose();
+        } catch (NiñoNoExistenteException ex) {
+            Logger.getLogger(AgregarVacuna.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
