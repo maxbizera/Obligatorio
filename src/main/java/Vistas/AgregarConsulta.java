@@ -6,7 +6,9 @@
 package Vistas;
 
 import Logica.AdministradorDeConsultas;
+import Logica.AdministradorDeControl;
 import Logica.AdministradorDeNiños;
+import Logica.AdministradorDeVacunas;
 import Logica.NiñoNoExistenteException;
 import Logica.ResumenConsulta;
 import java.awt.Dimension;
@@ -25,15 +27,19 @@ public class AgregarConsulta extends javax.swing.JFrame {
     private AdministradorDeNiños administradorDeNiños;
     private final String documento;
     private final AdministradorDeConsultas administradorDeConsultas;
+    private final AdministradorDeControl administradorDeControles;
+    private final AdministradorDeVacunas administradorDeVacunas;
     
     /**
      * Creates new form AgregarNiño
      */
 
-    AgregarConsulta(AdministradorDeNiños administradorDeNiños, AdministradorDeConsultas administradorDeConsultas,String documento) {
+    AgregarConsulta(AdministradorDeNiños administradorDeNiños, AdministradorDeConsultas administradorDeConsultas, AdministradorDeControl administradorDeControles, AdministradorDeVacunas administradorDeVacunas, String documento) {
         this.administradorDeNiños = administradorDeNiños;
         this.administradorDeConsultas = administradorDeConsultas;
         this.documento = documento;
+        this.administradorDeControles = administradorDeControles;
+        this.administradorDeVacunas = administradorDeVacunas;
         
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -133,7 +139,7 @@ public class AgregarConsulta extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        try {
-            new Detalle(administradorDeNiños, administradorDeConsultas, this.documento).setVisible(true);
+            new Detalle(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, this.documento).setVisible(true);
             dispose();
         } catch (NiñoNoExistenteException ex) {
             Logger.getLogger(AgregarConsulta.class.getName()).log(Level.SEVERE, null, ex);
@@ -150,7 +156,7 @@ public class AgregarConsulta extends javax.swing.JFrame {
                 txtRecomendacion.getText()
         ));
         try {
-            new Detalle(administradorDeNiños, administradorDeConsultas, this.documento).setVisible(true);
+            new Detalle(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, this.documento).setVisible(true);
             dispose();
         } catch (NiñoNoExistenteException ex) {
             Logger.getLogger(AgregarConsulta.class.getName()).log(Level.SEVERE, null, ex);

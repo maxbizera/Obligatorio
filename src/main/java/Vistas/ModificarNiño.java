@@ -5,7 +5,10 @@
  */
 package Vistas;
 
+import Logica.AdministradorDeConsultas;
+import Logica.AdministradorDeControl;
 import Logica.AdministradorDeNiños;
+import Logica.AdministradorDeVacunas;
 import Logica.Niño;
 import Logica.NiñoNoExistenteException;
 import java.awt.Dimension;
@@ -19,12 +22,18 @@ import javax.swing.JOptionPane;
 public class ModificarNiño extends javax.swing.JFrame {
 
     private final AdministradorDeNiños administradorDeNiños;
+    private final AdministradorDeConsultas administradorDeConsultas;
+    private final AdministradorDeControl administradorDeControles;
+    private final AdministradorDeVacunas administradorDeVacunas;
 
     /**
      * Creates new form AgregarNiño
      */
-    ModificarNiño(AdministradorDeNiños administradorDeNiños, String document) throws NiñoNoExistenteException {
+    ModificarNiño(AdministradorDeNiños administradorDeNiños, AdministradorDeConsultas administradorDeConsultas, AdministradorDeControl administradorDeControles, AdministradorDeVacunas administradorDeVacunas, String document) throws NiñoNoExistenteException {
         this.administradorDeNiños = administradorDeNiños;
+        this.administradorDeConsultas = administradorDeConsultas;
+        this.administradorDeControles = administradorDeControles;
+        this.administradorDeVacunas = administradorDeVacunas;
 
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -183,7 +192,7 @@ public class ModificarNiño extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new ListaNiños(administradorDeNiños).setVisible(true);
+        new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -197,7 +206,7 @@ public class ModificarNiño extends javax.swing.JFrame {
                 this.txtFonasa.isSelected()
         ));
         JOptionPane.showMessageDialog(null, "El niño " + this.txtNombreNiño.getText() + " ha sido modificado correctamente.");
-        new ListaNiños(administradorDeNiños).setVisible(true);
+        new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

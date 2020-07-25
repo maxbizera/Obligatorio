@@ -5,7 +5,10 @@
  */
 package Vistas;
 
+import Logica.AdministradorDeConsultas;
+import Logica.AdministradorDeControl;
 import Logica.AdministradorDeNiños;
+import Logica.AdministradorDeVacunas;
 import Logica.Niño;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -18,12 +21,18 @@ import javax.swing.JOptionPane;
 public class AgregarNiño extends javax.swing.JFrame {
 
     private AdministradorDeNiños administradorDeNiños;
+    private final AdministradorDeControl administradorDeControles;
+    private final AdministradorDeConsultas administradorDeConsultas;
+    private final AdministradorDeVacunas administradorDeVacunas;
 
     /**
      * Creates new form AgregarNiño
      */
-    AgregarNiño(AdministradorDeNiños administradorDeNiños) {
+    AgregarNiño(AdministradorDeNiños administradorDeNiños, AdministradorDeConsultas administradorDeConsultas, AdministradorDeControl administradorDeControles, AdministradorDeVacunas administradorDeVacunas) {
         this.administradorDeNiños = administradorDeNiños;
+        this.administradorDeConsultas = administradorDeConsultas;
+        this.administradorDeControles = administradorDeControles;
+        this.administradorDeVacunas = administradorDeVacunas;
 
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -171,7 +180,7 @@ public class AgregarNiño extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new ListaNiños(administradorDeNiños).setVisible(true);
+        new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -189,7 +198,7 @@ public class AgregarNiño extends javax.swing.JFrame {
                 )
         );
         JOptionPane.showMessageDialog(null, "El niño " + this.txtNombreNiño.getText() + " ha sido agregado correctamente.");
-        new ListaNiños(administradorDeNiños).setVisible(true);
+        new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

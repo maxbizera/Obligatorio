@@ -6,7 +6,9 @@
 package Vistas;
 
 import Logica.AdministradorDeConsultas;
+import Logica.AdministradorDeControl;
 import Logica.AdministradorDeNiños;
+import Logica.AdministradorDeVacunas;
 import Logica.Niño;
 import Logica.NiñoNoExistenteException;
 import java.awt.Dimension;
@@ -31,13 +33,17 @@ public class Detalle extends javax.swing.JFrame {
     private Object[][] controles;
     private Object[][] vacunas;
     private final AdministradorDeConsultas administradorDeConsultas;
+    private final AdministradorDeControl administradorDeControles;
+    private final AdministradorDeVacunas administradorDeVacunas;
 
     /**
      * Creates new form AgregarNiño
      */
-    Detalle(AdministradorDeNiños administradorDeNiños, AdministradorDeConsultas administradorDeConsultas, String document) throws NiñoNoExistenteException {
+    Detalle(AdministradorDeNiños administradorDeNiños, AdministradorDeConsultas administradorDeConsultas, AdministradorDeControl administradorDeControles, AdministradorDeVacunas administradorDeVacunas, String document) throws NiñoNoExistenteException {
         this.administradorDeNiños = administradorDeNiños;
         this.administradorDeConsultas = administradorDeConsultas;
+        this.administradorDeControles = administradorDeControles;
+        this.administradorDeVacunas = administradorDeVacunas;
         this.documento = document;
 
         initComponents();
@@ -440,13 +446,13 @@ public class Detalle extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new ListaNiños(administradorDeNiños, administradorDeConsultas).setVisible(true);
+        new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
-            new ModificarNiño(administradorDeNiños, this.documento).setVisible(true);
+            new ModificarNiño(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, this.documento).setVisible(true);
             setVisible(false);
         } catch (NiñoNoExistenteException ex) {
             Logger.getLogger(ListaNiños.class.getName()).log(Level.SEVERE, null, ex);
@@ -457,13 +463,13 @@ public class Detalle extends javax.swing.JFrame {
         int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este niño?");
         if (input == 0) {
             administradorDeNiños.eliminar(this.documento);
-            new ListaNiños(administradorDeNiños, administradorDeConsultas).setVisible(true);
+            new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
             setVisible(false);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new AgregarConsulta(administradorDeNiños, administradorDeConsultas, this.documento).setVisible(true);
+        new AgregarConsulta(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, this.documento).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -471,7 +477,7 @@ public class Detalle extends javax.swing.JFrame {
         int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este consulta?");
         if (input == 0) {
             //administradorDeNiños.eliminar(this.idConsultaSelected);
-            new ListaNiños(administradorDeNiños, administradorDeConsultas).setVisible(true);
+            new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
             setVisible(false);
         }
     }//GEN-LAST:event_btnEliminarConsultaActionPerformed
@@ -480,13 +486,13 @@ public class Detalle extends javax.swing.JFrame {
         int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este control?");
         if (input == 0) {
             //administradorDeNiños.eliminar(this.idControlSelected);
-            new ListaNiños(administradorDeNiños).setVisible(true);
+            new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
             setVisible(false);
         }
     }//GEN-LAST:event_btnEliminarControlActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        new AgregarControl(administradorDeNiños, this.documento).setVisible(true);
+        new AgregarControl(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, this.documento).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -494,13 +500,13 @@ public class Detalle extends javax.swing.JFrame {
         int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar esta vacuna?");
         if (input == 0) {
             //administradorDeNiños.eliminar(this.idVacunaSelected);
-            new ListaNiños(administradorDeNiños).setVisible(true);
+            new ListaNiños(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
             setVisible(false);
         }
     }//GEN-LAST:event_btnEliminarVacunaActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        new AgregarVacuna(administradorDeNiños, this.documento).setVisible(true);
+        new AgregarVacuna(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, this.documento).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 

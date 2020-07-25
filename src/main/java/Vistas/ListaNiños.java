@@ -1,7 +1,9 @@
 package Vistas;
 
 import Logica.AdministradorDeConsultas;
+import Logica.AdministradorDeControl;
 import Logica.AdministradorDeNiños;
+import Logica.AdministradorDeVacunas;
 import Logica.NiñoNoExistenteException;
 import Logica.ResumenNiño;
 import java.awt.Dimension;
@@ -19,11 +21,15 @@ public class ListaNiños extends javax.swing.JFrame {
     private final AdministradorDeNiños administradorDeNiños;
     private final AdministradorDeConsultas administradorDeConsultas;
     private Object[][] niños;
+    private final AdministradorDeControl administradorDeControles;
+    private final AdministradorDeVacunas administradorDeVacunas;
 
-    public ListaNiños(AdministradorDeNiños administradorDeNiño, AdministradorDeConsultas administradorDeConsultas) {
+    public ListaNiños(AdministradorDeNiños administradorDeNiño, AdministradorDeConsultas administradorDeConsultas, AdministradorDeControl administradorDeControles, AdministradorDeVacunas administradorDeVacunas) {
 
         this.administradorDeNiños = administradorDeNiño;
         this.administradorDeConsultas = administradorDeConsultas;
+        this.administradorDeControles = administradorDeControles;
+        this.administradorDeVacunas = administradorDeVacunas;
 
         recargarLista();
 
@@ -185,13 +191,13 @@ public class ListaNiños extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        new AgregarNiño(administradorDeNiños).setVisible(true);
+        new AgregarNiño(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItemModificarNiñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModificarNiñoActionPerformed
         try {
-            new ModificarNiño(administradorDeNiños, this.documentSelected).setVisible(true);
+            new ModificarNiño(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, this.documentSelected).setVisible(true);
             setVisible(false);
         } catch (NiñoNoExistenteException ex) {
             Logger.getLogger(ListaNiños.class.getName()).log(Level.SEVERE, null, ex);
@@ -212,7 +218,7 @@ public class ListaNiños extends javax.swing.JFrame {
 
     private void jMenuItemDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDetalleActionPerformed
         try {
-            new Detalle(administradorDeNiños, administradorDeConsultas, this.documentSelected).setVisible(true);
+            new Detalle(administradorDeNiños, administradorDeConsultas, administradorDeControles, administradorDeVacunas, this.documentSelected).setVisible(true);
             setVisible(false);
         } catch (NiñoNoExistenteException ex) {
             Logger.getLogger(ListaNiños.class.getName()).log(Level.SEVERE, null, ex);
