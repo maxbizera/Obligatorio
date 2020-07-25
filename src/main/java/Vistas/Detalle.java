@@ -51,19 +51,7 @@ public class Detalle extends javax.swing.JFrame {
         this.administradorDeVacunas = administradorDeVacunas;
         this.documento = document;
 
-        initComponents();
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
-
         Niño niño = administradorDeNiños.obtener(document);
-        this.txtDocumentoNiño.setText(niño.getDocumento());
-        this.txtNombreNiño.setText(niño.getNombre());
-        this.txtFonasa.setSelected(niño.getFonasa());
-        this.txtMedicoCabezera.setText(niño.getMedicoCabezera());
-        this.txtServicioMedico.setText(niño.getServicioMedico());
-        this.txtNacimientoAño.setSelectedItem(niño.getFechaDeNacimiento().split("-")[0]);
-        this.txtNacimientoMes.setSelectedItem(niño.getFechaDeNacimiento().split("-")[1]);
-        this.txtNacimientoDia.setSelectedItem(niño.getFechaDeNacimiento().split("-")[2].split("T")[0]);
 
         setTitle("Detalle del niño " + niño.getDocumento());
         
@@ -99,6 +87,10 @@ public class Detalle extends javax.swing.JFrame {
             ++index3;
         }
                 
+        initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation(dim.width / 2 - getSize().width / 2, dim.height / 2 - getSize().height / 2);
+
         listarConsultas.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
             idConsultaSelected = listarConsultas.getValueAt(listarConsultas.getSelectedRow(), 1).toString();
             btnEliminarConsulta.setEnabled(true);
@@ -111,6 +103,16 @@ public class Detalle extends javax.swing.JFrame {
             idVacunaSelected = listarVacunas.getValueAt(listarVacunas.getSelectedRow(), 1).toString();
             btnEliminarVacuna.setEnabled(true);
         });
+        
+        this.txtDocumentoNiño.setText(niño.getDocumento());
+        this.txtNombreNiño.setText(niño.getNombre());
+        this.txtFonasa.setSelected(niño.getFonasa());
+        this.txtMedicoCabezera.setText(niño.getMedicoCabezera());
+        this.txtServicioMedico.setText(niño.getServicioMedico());
+        this.txtNacimientoAño.setSelectedItem(niño.getFechaDeNacimiento().split("-")[0]);
+        this.txtNacimientoMes.setSelectedItem(niño.getFechaDeNacimiento().split("-")[1]);
+        this.txtNacimientoDia.setSelectedItem(niño.getFechaDeNacimiento().split("-")[2].split("T")[0]);
+
     }
 
     /**
