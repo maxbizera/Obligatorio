@@ -95,7 +95,7 @@ public class ModificarNiño extends javax.swing.JFrame {
             txtNacimientoDia.addItem(""+i+"");
         }
 
-        txtNacimientoMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Més", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        txtNacimientoMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Més", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 
         txtNacimientoAño.addItem("Año");
         for (int i = 2020; i>=1990; --i) {
