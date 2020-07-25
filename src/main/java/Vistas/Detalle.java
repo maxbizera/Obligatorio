@@ -10,6 +10,8 @@ import Logica.Niño;
 import Logica.NiñoNoExistenteException;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,12 +21,14 @@ import javax.swing.JOptionPane;
 public class Detalle extends javax.swing.JFrame {
 
     private final AdministradorDeNiños administradorDeNiños;
+    private final String documento;
 
     /**
      * Creates new form AgregarNiño
      */
     Detalle(AdministradorDeNiños administradorDeNiños, String document) throws NiñoNoExistenteException {
         this.administradorDeNiños = administradorDeNiños;
+        this.documento = document;
 
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -57,7 +61,6 @@ public class Detalle extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtNombreNiño = new javax.swing.JTextField();
         txtDocumentoNiño = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtNacimientoDia = new javax.swing.JComboBox<>();
@@ -68,6 +71,8 @@ public class Detalle extends javax.swing.JFrame {
         txtServicioMedico = new javax.swing.JTextField();
         txtMedicoCabezera = new javax.swing.JTextField();
         txtFonasa = new javax.swing.JCheckBox();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalle del niño");
@@ -80,14 +85,7 @@ public class Detalle extends javax.swing.JFrame {
 
         txtDocumentoNiño.setEnabled(false);
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Cancelar");
+        jButton2.setText("Volver");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -122,6 +120,20 @@ public class Detalle extends javax.swing.JFrame {
         txtFonasa.setText("¿Tiene fonasa?");
         txtFonasa.setEnabled(false);
 
+        jButton3.setText("Modificar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Eliminar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,8 +143,10 @@ public class Detalle extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(127, 127, 127)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +163,7 @@ public class Detalle extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtNacimientoMes, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNacimientoAño, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtNacimientoAño, 0, 102, Short.MAX_VALUE))
                             .addComponent(txtServicioMedico)
                             .addComponent(txtMedicoCabezera)
                             .addComponent(txtFonasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -188,8 +202,9 @@ public class Detalle extends javax.swing.JFrame {
                 .addComponent(txtFonasa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -201,23 +216,28 @@ public class Detalle extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.administradorDeNiños.modificar(new Niño(
-                this.txtDocumentoNiño.getText(),
-                this.txtNombreNiño.getText(),
-                this.txtNacimientoAño.getSelectedItem().toString().concat("-").concat(this.txtNacimientoMes.getSelectedItem().toString()).concat("-").concat(this.txtNacimientoDia.getSelectedItem().toString()),
-                this.txtServicioMedico.getText(),
-                this.txtMedicoCabezera.getText(),
-                this.txtFonasa.isSelected()
-        ));
-        JOptionPane.showMessageDialog(null, "El niño " + this.txtNombreNiño.getText() + " ha sido modificado correctamente.");
-        new ListaNiños(administradorDeNiños).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            new ModificarNiño(administradorDeNiños, this.documento).setVisible(true);
+            setVisible(false);
+        } catch (NiñoNoExistenteException ex) {
+            Logger.getLogger(ListaNiños.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        int input = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este niño?");
+        if (input == 0) {
+            administradorDeNiños.eliminar(this.documento);
+            new ListaNiños(administradorDeNiños).setVisible(true);
+            setVisible(false);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
