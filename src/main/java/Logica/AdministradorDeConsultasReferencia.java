@@ -36,20 +36,20 @@ public class AdministradorDeConsultasReferencia extends AdministradorDeConsultas
     }
 
     @Override
-    public void agregar(ResumenConsulta vacuna) {
+    public void agregar(ResumenConsulta consulta) {
         try {
-            Paciente paciente = this.repositorio.obtener(vacuna.documento);
-            paciente.agregarConsulta(new Consulta(vacuna.fechaDeRegistro, vacuna.medico, vacuna.diagnostico, vacuna.recomendaciones));
+            Paciente paciente = this.repositorio.obtener(consulta.documento);
+            paciente.agregarConsulta(new Consulta(consulta.fechaDeRegistro, consulta.medico, consulta.diagnostico, consulta.recomendaciones));
         } catch (PacienteNoEncontradoException ex) {
             Logger.getLogger(AdministradorDeConsultasReferencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void eliminar(ResumenConsulta vacuna) {
+    public void eliminar(ResumenConsulta consulta) {
         try {
-            Paciente paciente = this.repositorio.obtener(vacuna.documento);
-            paciente.eliminarConsulta(new Consulta(vacuna.fechaDeRegistro, vacuna.medico, vacuna.diagnostico, vacuna.recomendaciones));
+            Paciente paciente = this.repositorio.obtener(consulta.documento);
+            paciente.eliminarConsulta(new Consulta(consulta.fechaDeRegistro, consulta.medico, consulta.diagnostico, consulta.recomendaciones));
         } catch (PacienteNoEncontradoException ex) {
             Logger.getLogger(AdministradorDeConsultasReferencia.class.getName()).log(Level.SEVERE, null, ex);
         }

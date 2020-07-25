@@ -4,37 +4,31 @@ import java.util.Date;
 
 public class Vacuna {
 
-    private final String idNiño;
     private final Date fechaDeRegistro;
     private final String nombre;
     private final int dosis;
     private final boolean obligatoria;
 
-    Vacuna(String idNiño, Date fechaDeRegistro, String nombre, int dosis, boolean obligatoria) {
-        this.idNiño = idNiño;
+    public Vacuna(Date fechaDeRegistro, String nombre, int dosis, boolean obligatoria) {
         this.fechaDeRegistro = fechaDeRegistro;
         this.nombre = nombre;
         this.dosis = dosis;
         this.obligatoria = obligatoria;
     }
 
-    Date getFecha() {
+    public Date getFecha() {
         return this.fechaDeRegistro;
     }
 
-    String getIdNiño() {
-        return this.idNiño;
-    }
-
-    int getDosis() {
+    public int getDosis() {
         return this.dosis;
     }
 
-    String getNombre() {
+    public String getNombre() {
         return this.nombre;
     }
 
-    boolean esObligatoria() {
+    public boolean esObligatoria() {
         return this.obligatoria;
     }
 

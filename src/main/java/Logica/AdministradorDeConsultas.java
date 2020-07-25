@@ -7,10 +7,10 @@ public abstract class AdministradorDeConsultas {
 
     public abstract ArrayList<ResumenConsulta> listar(String documento);
 
-    public abstract void agregar(ResumenConsulta vacuna);
+    public abstract void agregar(ResumenConsulta consulta);
 
-    public abstract void eliminar(ResumenConsulta vacuna);
+    public abstract void eliminar(ResumenConsulta consulta);
 
-    public abstract int contarConsultasHastaFecha(Date fecha);
+    public abstract int contarConsultasHastaFecha(String documento, Date fecha);
 
 }
